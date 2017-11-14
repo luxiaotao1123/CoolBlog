@@ -1,7 +1,7 @@
 function login() {
     $.ajax({
         url:"/login",
-        type:"post",
+        type:"get",
         dataType:"JSON",
         data:$(".login").serialize(),
         success:function (map) {

@@ -6,6 +6,7 @@ import cn.lxt.service.UsersService;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,7 @@ public class LoginController {
     private TokenService tokenService;
 
     //登录成功后返回一个map
-    @PostMapping(value = "/login")
+    @GetMapping(value = "/login")
     @ResponseBody
     public Map<String, Object> login(HttpServletRequest request){
         String username = request.getParameter("name");

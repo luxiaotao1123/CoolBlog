@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 
-@Aspect     //定义一个切面类
-@Configuration
+//@Aspect     //定义一个切面类
+//@Configuration
 public class TestAspectJ {
 
     @Autowired
