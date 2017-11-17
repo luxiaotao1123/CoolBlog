@@ -56,24 +56,20 @@ public class ShiroConfig {
         //authc：所有url都必须认证通过才可以访问
         //user，配置记住我或者认证通过才能访问
         //logout，退出登录
-        filterChainDefinitionMap.put("/css/**","anon");     //运行匿名访问
-        filterChainDefinitionMap.put("/images/**","anon");     //运行匿名访问
-        filterChainDefinitionMap.put("/login.html","authc");     //运行匿名访问
-        filterChainDefinitionMap.put("/testLogin","anon");     //运行匿名访问
-        filterChainDefinitionMap.put("/Swagger-ui.html","anon");    //运行匿名访问
+        filterChainDefinitionMap.put("/**","anon");     //运行匿名访问
         filterChainDefinitionMap.put("/logout","logout");   //登出
-        filterChainDefinitionMap.put("/**","authc");        //必须认证后才能访问
+        //filterChainDefinitionMap.put("/**","authc");        //必须认证后才能访问,这里写系统管理页面
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         //3.2配置登录和登录成功之后的url
         //设置登录界面，如果不设置为寻找web根目录下的文件
         shiroFilterFactoryBean.setLoginUrl("/login.html");
         //设置登录成功后要跳转的连接
-        shiroFilterFactoryBean.setSuccessUrl("/testSuccess");
+        //shiroFilterFactoryBean.setSuccessUrl("/testSuccess");
         //设置登录未成功，也可以说无权限界面
-        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-
-
+        //shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/swagger-ui.html");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/");
         //4.返回对象
         System.out.println("shiro拦截工厂注入类成功");
         return shiroFilterFactoryBean;
