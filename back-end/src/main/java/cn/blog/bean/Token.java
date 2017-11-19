@@ -23,6 +23,10 @@ public class Token {
         this.expiretime = expiretime;
     }
 
+    public Token(String token) {
+        this.token = token;
+    }
+
     public Integer getTokenid() {
         return tokenid;
     }
