@@ -1,19 +1,14 @@
 package cn.blog;
 
 import cn.blog.filter.TestFilter;
-import cn.blog.filter.TokenFilter;
-import cn.blog.interceptor.MyInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,15 +26,6 @@ public class WarApplication {
 		SpringApplication.run(WarApplication.class, args);
 	}
 
-	//mvc控制器
-	@Configuration
-	static class WebMvcConfigurer extends WebMvcConfigurerAdapter{
-		//拦截器
-		public void addInterceptors(InterceptorRegistry registry){
-			registry.addInterceptor(new MyInterceptor())	//指定拦截器类
-					.addPathPatterns("/admin/Handles");		//指定该类拦截的url
-		}
-	}
 
 	//过滤器
 	@Bean
@@ -51,11 +37,12 @@ public class WarApplication {
         urlPatterns.add("/Blogs");      //指定需要过滤的url
 		filterRegistrationBean.setFilter(testFilter);       //set
 
-        TokenFilter tokenFilter = new TokenFilter();    //管理员登录页面过滤器
-        urlPatterns.add("/admin/Blogs");
-        filterRegistrationBean.setFilter(testFilter);
+        //TokenFilter tokenFilter = new TokenFilter();    //管理员登录页面过滤器
+        //urlPatterns.add("/admin/Blogs");
+        //filterRegistrationBean.setFilter(testFilter);
 
         filterRegistrationBean.setUrlPatterns(urlPatterns);     //set
 		return filterRegistrationBean;
 	}
+
 }

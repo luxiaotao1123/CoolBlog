@@ -9,5 +9,7 @@ public interface TokenService {
 
     public Map<String,Object> createToken(User user);
 
+    public String queryByToken(String token);
+
     public void checkExpire();
 }
