@@ -36,4 +36,6 @@ public interface TokenMapper {
     int updateByToken(Token token);
 
     int deleteByExpireTime(Token token);
+
+    String findByStringToken(String token);
 }
