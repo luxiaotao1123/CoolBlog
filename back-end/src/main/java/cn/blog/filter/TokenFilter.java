@@ -36,7 +36,7 @@ public class TokenFilter implements Filter {
             isFilter = true;
         }else if (token==null||token.isEmpty()){
             System.out.printf("客户端没有给出token信息");
-        }else {
+        }  else {
             System.out.println("token无效");
         }
         if (isFilter){

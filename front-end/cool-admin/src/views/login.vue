@@ -12,7 +12,7 @@
                 <Input v-model="formValidate.password"  type='password' placeholder="Enter your password" autocomplete="off"></Input>
             </FormItem>
             <FormItem>
-            <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
+            <Button type="primary" @click="loginIn('formValidate')">Submit</Button>
         </FormItem>
           </Form>
          
@@ -70,7 +70,7 @@ export default {
     }
   },
   methods: {
-    handleSubmit (name) {
+    loginIn (name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           let that = this
@@ -86,7 +86,19 @@ export default {
               console.log(response)
               if (response.data.status === 200) {
                 that.$Message.success('Success!')
-                that.$router.push({ path: '/' })
+                // that.$router.push({ path: '/' })
+                console.log(response)
+                let token = response.data.token.token
+                let UserId = response.data.token.userid
+                that.$store.dispatch('UserLogin', token)
+                that.$store.dispatch('UserId', UserId)
+                if (that.$route.query.back) {
+                  that.$router.replace(this.$route.query.back)
+                } else {
+                  that.$router.replace({
+                    name: '博客管理'
+                  })
+                }
               } else {
                 that.$Message.error('Fail! ')
               }

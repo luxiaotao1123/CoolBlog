@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Service
+@Service("tokenService")
 public class TokenServiceImpl implements TokenService {
 
     private static final int Expire = 3600*25;
@@ -22,6 +22,11 @@ public class TokenServiceImpl implements TokenService {
     @Autowired
     private TokenMapper tokenMapper;
     
+    @Override
+    public String queryByToken(String token) {
+        return tokenMapper.findByStringToken(token);
+    }
+
     @Override
     public Map<String, Object> createToken(User user) {
         User user1 = userMapper.selectByNameAndPassword(user);
