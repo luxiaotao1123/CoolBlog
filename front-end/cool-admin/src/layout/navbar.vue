@@ -1,16 +1,16 @@
 <template>
 <section class="app-navbar">
   <Col span="8">
-     <Menu  >
+     <Menu>
          <Submenu  v-for="(item, index) in list" :index="item.path" :key="item.id" :name='item.path'>
              <template slot="title" >
                         <Icon type="ios-paper"></Icon>
                         {{item.label}}
             </template>
-             <MenuItem v-for="(i, subIndex) in item.list" :index="'/blog/'+i.path" :key="'/blog/'+i.path" :name="'/blog/'+i.path">
-             <router-link :to="i.path">
+             <!-- <router-link :to="i.path"> -->
+             <MenuItem v-for="(i, subIndex) in item.list" :index="i.path" :key="'/blog/'+i.path" :name="'/blog/'+i.path"  @click.native="go(i.path)">
                {{i.label}}
-             </router-link>
+             <!-- </router-link> -->
              </MenuItem>
          </Submenu>
      </Menu>
@@ -73,6 +73,10 @@ export default {
         list.push(menuItem)
       })
       this.list = list
+    },
+    go (name) {
+      // console.log(name)
+      this.$router.push(name)
     }
   },
   created () {
