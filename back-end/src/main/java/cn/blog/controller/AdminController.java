@@ -16,6 +16,7 @@ import org.apache.commons.collections.map.LinkedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,6 +31,9 @@ public class AdminController {
 
     @Autowired
     private HandleMapper handleMapper;
+
+    @Autowired
+    private TokenMapper tokenMapper;
 
     @ApiOperation(value = "拿到所有操作方式",notes = "")
     @GetMapping(value = "Handles")
@@ -55,7 +59,9 @@ public class AdminController {
             @ApiImplicitParam(name = "userID",value = "用户Id",required = true,dataType = "Integer")
     })
     @PostMapping(value = "Blog")
-    public R1 postBlog(@RequestParam("title")String title,@RequestParam("label")String label,@RequestParam("content")String content,@RequestParam("userId")Integer userId){
+    public R1 postBlog(@RequestParam("title")String title, @RequestParam("label")String label, @RequestParam("content")String content, HttpServletRequest request){
+        String token = request.getHeader("token");
+        int userId = tokenMapper.finduserIdByToken(token);
         Date updateTime = new Date();
         Blog blog = new Blog(title,label,content,updateTime,userId);
         try {
