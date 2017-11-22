@@ -9,23 +9,26 @@ import java.util.Map;
  */
 public class test3 implements Runnable{
 
-    public Map<String,Object> test(){
-        Map<String,Object> hashmap = new HashMap<String,Object>();
-        hashmap.put("1","1");
-        hashmap.put("1","2");
-        System.out.println(hashmap.toString()+new Date());
-        return hashmap;
-    }
+    private StringBuilder value=null;
+
+
 
     public static void main(String[] args) throws InterruptedException {
         test3 test3 =new test3();
         new Thread(test3).start();
-        Thread.sleep(10000);
         new Thread(test3).start();
     }
 
     @Override
     public void run() {
-        test();
+        int i = 1;
+        run2();
+        System.out.println(i);
     }
+
+    public void run2(){
+        int i = 2;
+        System.out.println(i);
+    }
+
 }

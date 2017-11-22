@@ -21,7 +21,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Autowired
     private TokenMapper tokenMapper;
-
+    
     @Override
     public Map<String, Object> createToken(User user) {
         User user1 = userMapper.selectByNameAndPassword(user);

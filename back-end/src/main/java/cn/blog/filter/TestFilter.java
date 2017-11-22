@@ -1,5 +1,7 @@
 package cn.blog.filter;
 
+import cn.blog.dao.BlogMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,9 @@ public class TestFilter implements Filter{
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
+
+    @Autowired
+    private BlogMapper blogMapper;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

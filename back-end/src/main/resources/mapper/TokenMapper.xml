@@ -230,7 +230,7 @@
     where tokenId=#{tokenid}
   </delete>
   <select id="findByStringToken" parameterType="java.lang.String" resultType="java.lang.String">
-    SELECT token from Token
+    SELECT token from token
     WHERE token=#{token}
   </select>
 </mapper>
