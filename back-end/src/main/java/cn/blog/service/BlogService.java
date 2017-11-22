@@ -2,6 +2,8 @@ package cn.blog.service;
 
 
 
+import cn.blog.bean.Blog;
+
 import java.util.Map;
 
 /**
@@ -9,4 +11,6 @@ import java.util.Map;
  */
 public interface BlogService {
     public Map<String,Object> getALLBlog();
+
+    public void saveBlog(Blog blog);
 }

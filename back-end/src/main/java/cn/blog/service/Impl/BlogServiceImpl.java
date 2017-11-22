@@ -25,4 +25,9 @@ public class BlogServiceImpl implements BlogService {
         map.put("blog",blogList);
         return map;
     }
+
+    @Override
+    public void saveBlog(Blog blog) {
+        blogMapper.insert(blog);
+    }
 }

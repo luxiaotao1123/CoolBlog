@@ -1,18 +1,16 @@
-package cn.blog.test;
+package cn.blog.test.ThreadTest;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
-public class ThreadTest{
+public class Test1 {
 
 
     //private static Map<Integer,Object> map = Collections.synchronizedMap(new HashMap<Integer,Object>());
     private static Map<Integer,Object> map = new HashMap<Integer,Object>();
 
 
-    public ThreadTest(){
+    public Test1(){
         Thread t1 = new Thread(){
             public void run(){
                 for(int i=0;i<100000;i++){
@@ -60,7 +58,7 @@ public class ThreadTest{
     }
 
     public static void main(String[] args) {
-        new ThreadTest();
+        new Test1();
         System.out.println("shuchu"+map.size());
     }
 }

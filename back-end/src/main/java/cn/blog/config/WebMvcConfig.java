@@ -18,7 +18,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(tokenInterceptor())
-                .addPathPatterns("/admin/Handles");
+                .addPathPatterns("/admin/**");
     }
 
 

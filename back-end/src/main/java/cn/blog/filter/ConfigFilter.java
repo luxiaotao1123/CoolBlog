@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 @Component
-public class TestFilter implements Filter{
+public class ConfigFilter implements Filter{
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -20,7 +20,8 @@ public class TestFilter implements Filter{
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        System.out.println("过滤器实现");
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         filterChain.doFilter(request,response);
     }
 
