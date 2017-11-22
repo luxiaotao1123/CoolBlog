@@ -29,6 +29,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public Map<String, Object> createToken(User user) {
+        Map<String,Object> map = new HashMap<String,Object>();
         User user1 = userMapper.selectByNameAndPassword(user);
         //创建TokenEntity参数
         String newtoken = UUID.randomUUID().toString();
@@ -44,7 +45,6 @@ public class TokenServiceImpl implements TokenService {
             tokenMapper.updateByToken(token);
             System.out.println("更新成功");
         }
-        Map<String,Object> map = new HashMap<String,Object>();
         map.put("token",token);
         return map;
     }

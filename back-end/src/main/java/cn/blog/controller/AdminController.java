@@ -9,6 +9,7 @@ import cn.blog.dao.TokenMapper;
 import cn.blog.service.BlogService;
 import cn.blog.utils.R;
 import cn.blog.utils.R1;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -59,11 +60,12 @@ public class AdminController {
             @ApiImplicitParam(name = "userID",value = "用户Id",required = true,dataType = "Integer")
     })
     @PostMapping(value = "Blog")
-    public R1 postBlog(@RequestParam("title")String title, @RequestParam("label")String label, @RequestParam("content")String content, HttpServletRequest request){
+    public R1 postBlog(@RequestBody String Blog, HttpServletRequest request){
+        Blog blog1= JSONObject.parseObject(Blog,Blog.class);
         String token = request.getHeader("token");
         int userId = tokenMapper.finduserIdByToken(token);
-        Date updateTime = new Date();
-        Blog blog = new Blog(title,label,content,updateTime,userId);
+        Date now = new Date();
+        Blog blog = new Blog(blog1.getTitle(),blog1.getLabel(),blog1.getContent(),now,userId);
         try {
             blogService.saveBlog(blog);
         }catch (Exception e){
@@ -71,4 +73,5 @@ public class AdminController {
         }
         return R1.success(201,"创建博客成功");
     }
+
 }
