@@ -44,6 +44,7 @@
 <script>
 import { quillEditor } from 'vue-quill-editor'
 import service from '../utils/service.js'
+// import QS from 'querystring'
 
 export default {
   components: {
@@ -95,16 +96,22 @@ export default {
       this.$refs[name].validate(valid => {
         console.log(this.blogFormItem)
         let that = this
-        let data = JSON.stringify(this.blogFormItem)
+        let item = this.blogFormItem
+        // let data = 'title=' + item.title + '&label=' + item.label + '&content=' + item.content
+        // let x = QS.stringify(item)
+        let y = JSON.stringify(item)
+        // console.log(x + data)
+        console.log(y)
         if (valid) {
           service({
             url: '/api/admin/Blog',
             method: 'post',
-            data: data
+            contentType: 'application/json',
+            data: y
           })
           .then(function (response) {
             console.log(response)
-            if (response.status === 200) {
+            if (response.status === 200 && response.data.code === 201) {
               that.$Message.success('提交成功')
             } else {
               that.$Message.error('提交失败了! ')

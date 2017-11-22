@@ -58,12 +58,14 @@ public class AdminController {
             @ApiImplicitParam(name = "content",value = "文章内容",required = true,dataType = "String"),
             @ApiImplicitParam(name = "userID",value = "用户Id",required = true,dataType = "Integer")
     })
-    @PostMapping(value = "Blog")
-    public R1 postBlog(@RequestParam("title")String title, @RequestParam("label")String label, @RequestParam("content")String content, HttpServletRequest request){
+    @PostMapping  (value = "Blog")
+    //public R1 postBlog(@RequestParam("title")String title, @RequestParam("label")String label, @RequestParam("content")String content, HttpServletRequest request){
+    public R1 postBlog(@RequestBody Blog blog, HttpServletRequest request){
         String token = request.getHeader("token");
         int userId = tokenMapper.finduserIdByToken(token);
         Date updateTime = new Date();
-        Blog blog = new Blog(title,label,content,updateTime,userId);
+        blog.setUpdatetime(updateTime);
+        blog.setUserid(userId);
         try {
             blogService.saveBlog(blog);
         }catch (Exception e){

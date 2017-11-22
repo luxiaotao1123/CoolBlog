@@ -67,13 +67,13 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // 获取store里面的token
   let token = store.state.token
-  console.log(token)
-  console.log(store.state.userid)
+  // console.log(token)
+  // console.log(store.state.userid)
   // 判断要去的路由有没有requiresAuth
   if (to.meta.requiresAuth) {
     if (token) {
       next()
-      console.log('有token')
+      // console.log('有token')
     } else {
       next({
         path: '/login',
