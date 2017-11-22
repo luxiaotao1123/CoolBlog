@@ -233,4 +233,8 @@
     SELECT token from token
     WHERE token=#{token}
   </select>
+  <select id="finduserIdByToken" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT userId from token
+    WHERE token=#{token}
+  </select>
 </mapper>

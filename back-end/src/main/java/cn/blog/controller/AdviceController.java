@@ -16,5 +16,4 @@ public class AdviceController  {
         return R1.error(500,"服务器内部错误");
     }
 
-
 }

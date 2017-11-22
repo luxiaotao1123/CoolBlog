@@ -42,6 +42,12 @@ public class test2 {
         }else {
             System.out.println("token无效");
         }
+    }
 
+    @Test
+    public void Test4(){
+        String token = "e53d4a4a-19c8-4227-8064-2ffa417e2dd6";
+        int userId = tokenMapper.finduserIdByToken(token);
+        System.out.println(userId);
     }
 }

@@ -29,6 +29,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.sendError(401,"对不起，您没有权限");
         }  else {
             System.out.println("token无作用");
+            response.sendError(401,"对不起，您没有权限");
         }
         return isSuccess;
     }

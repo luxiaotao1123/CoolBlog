@@ -38,4 +38,6 @@ public interface TokenMapper {
     int deleteByExpireTime(Token token);
 
     String findByStringToken(String token);
+
+    int finduserIdByToken(String token);
 }
