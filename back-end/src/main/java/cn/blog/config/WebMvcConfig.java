@@ -9,16 +9,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
-    public void addInterceptors(InterceptorRegistry registry){
-        //registry.addInterceptor(new MyInterceptor())	//指定拦截器类
-        //        .addPathPatterns("/admin/Handles");		//指定该类拦截的url
-        registry.addInterceptor(tokenInterceptor())
-                .addPathPatterns("/admin/Handles");
-    }
-
     @Bean
     TokenInterceptor tokenInterceptor(){
         return new TokenInterceptor();
     }
+
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(tokenInterceptor())
+                .addPathPatterns("/admin/Handles");
+    }
+
+
 
 }

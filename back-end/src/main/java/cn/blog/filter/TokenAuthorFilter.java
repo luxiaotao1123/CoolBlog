@@ -20,11 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-/***************
- * token验证拦截
- * @author bamboo zjcjava@163.com
- * @time 2017-08-01
- */
+
 //@Component      //注入到IOC容器
 @WebFilter(urlPatterns = "login/*",filterName = "tokenAuthorFilter")        //过滤的url和过滤器名字
 

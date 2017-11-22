@@ -1,18 +1,16 @@
 package cn.blog.interceptor;
 
-import cn.blog.dao.TokenMapper;
+
 import cn.blog.service.TokenService;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@Component
-public class TokenInterceptor extends HandlerInterceptorAdapter {
+@Component
+public class TokenInterceptor implements HandlerInterceptor {
 
     @Autowired
     private TokenService tokenService;
@@ -30,9 +28,19 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         }  else if (token==null|token.isEmpty()){
             System.out.printf("客户端没有给出token信息");
         }  else {
-            System.out.println("token无效");
+            System.out.println("token无作用");
         }
         return isSuccess;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+
     }
 
 }
