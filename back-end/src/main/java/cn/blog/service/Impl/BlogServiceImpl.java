@@ -30,4 +30,26 @@ public class BlogServiceImpl implements BlogService {
     public void saveBlog(Blog blog) {
         blogMapper.insert(blog);
     }
+
+    @Override
+    public Blog getOneBlog(int blogId) {
+        return blogMapper.queryByblogId(blogId);
+    }
+
+    @Override
+    public void deleteOneBlog(int blogId) {
+        blogMapper.deleteByPrimaryKey(blogId);
+    }
+
+    @Override
+    public Blog updateOneBlog(Blog blog) {
+        try {
+            blogMapper.updateByBlog(blog);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return blogMapper.queryByblogId(blog.getBlogid());
+    }
+
+
 }

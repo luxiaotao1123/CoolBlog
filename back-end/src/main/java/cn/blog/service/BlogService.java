@@ -13,4 +13,10 @@ public interface BlogService {
     public Map<String,Object> getALLBlog();
 
     public void saveBlog(Blog blog);
+
+    public Blog getOneBlog(int blogId);
+
+    public void deleteOneBlog(int blogId);
+
+    public Blog updateOneBlog(Blog blog);
 }

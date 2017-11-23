@@ -7,15 +7,13 @@ import cn.blog.bean.HandleExample;
 import cn.blog.dao.HandleMapper;
 import cn.blog.dao.TokenMapper;
 import cn.blog.service.BlogService;
-import cn.blog.utils.R;
 import cn.blog.utils.R1;
-import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.collections.map.LinkedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -37,29 +35,49 @@ public class AdminController {
     private TokenMapper tokenMapper;
 
     @ApiOperation(value = "拿到所有操作方式",notes = "")
-    @GetMapping(value = "Handles")
+    @GetMapping(value = "handles")
     public R1 ajaxHandle(){
         Map<String, Object> map = new LinkedHashMap<String,Object>();
         List<Handle> handleList = handleMapper.selectByExample(new HandleExample());
         map.put("handle",handleList);
-        return R1.success(map);
+        return R1.ok(map);
     }
 
     @ApiOperation(value = "拿到所有博客",notes = "")
-    @GetMapping(value = "Blogs")
+    @GetMapping(value = "blogs")
     public R1 getBlog(){
         Map<String, Object> map = blogService.getALLBlog();
-        return R1.success(map);
+        return R1.ok(map);
     }
 
-    @ApiOperation(value = "上传一篇博客",notes = "成功返回201，失败返回500,无权限返回401")
+    @ApiOperation(value = "拿到一篇博客的详情",notes = "成功返回blog对象，失败返回500")
+    @ApiImplicitParam(name = "blogId",value = "博客Id",required = true,dataType = "Integer")
+    @GetMapping(value = "blog/{blogId}")
+    public R1 getOneBlog(@PathVariable("blogId")Integer blogId){
+        Blog blog = blogService.getOneBlog(blogId);
+        return R1.add("blog",blog);
+    }
+
+    @ApiOperation(value = "删除一篇博客",notes = "成功返回200，失败返回500")
+    @ApiImplicitParam(name = "blogIds",value = "博客Ids",required = true,dataType = "List")
+    @DeleteMapping(value = "blog/{blogId}")
+    public R1 deleteBlogs(@PathVariable("blogId")Integer blogId){
+        try {
+            blogService.deleteOneBlog(blogId);
+        }catch (MethodArgumentTypeMismatchException exception){
+            R1.error(500,"服务器内部错误");
+        }
+        return R1.success(200,"删除博客成功");
+    }
+
+    @ApiOperation(value = "创建一篇博客",notes = "成功返回201，失败返回500,无权限返回401")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "title",value = "标题",required = true,dataType = "String"),
             @ApiImplicitParam(name = "label",value = "标签分类",required = true,dataType = "String"),
             @ApiImplicitParam(name = "content",value = "文章内容",required = true,dataType = "String"),
             @ApiImplicitParam(name = "userID",value = "用户Id",required = true,dataType = "Integer")
     })
-    @PostMapping(value = "Blog")
+    @PostMapping(value = "blog")
     public R1 postBlog(@RequestBody Blog blog, HttpServletRequest request){
         String token = request.getHeader("token");
         int userId = tokenMapper.finduserIdByToken(token);
@@ -74,4 +92,16 @@ public class AdminController {
         return R1.success(201,"创建博客成功");
     }
 
+    @ApiOperation(value = "修改一篇博客",notes = "成功返回blog对象，失败返回500")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "title",value = "标题",required = true,dataType = "String"),
+            @ApiImplicitParam(name = "label",value = "标签分类",required = true,dataType = "String"),
+            @ApiImplicitParam(name = "content",value = "文章内容",required = true,dataType = "String"),
+            @ApiImplicitParam(name = "userid",value = "用户Id",required = true,dataType = "Integer")
+    })
+    @PutMapping(value = "blog")
+    public R1 updateBlog(@RequestBody Blog blog){
+        blog.setUpdatetime(new Date());
+        ;return R1.add("blog",blogService.updateOneBlog(blog));
+    }
 }

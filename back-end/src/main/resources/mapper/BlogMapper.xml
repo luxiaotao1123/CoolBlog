@@ -240,4 +240,19 @@
       status = #{status,jdbcType=INTEGER}
     where blogId = #{blogid,jdbcType=INTEGER}
   </update>
+  <select id="queryByblogId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM blog
+    WHERE blogId=#{blogId}
+  </select>
+  <update id="updateByBlog" parameterType="cn.blog.bean.Blog">
+    UPDATE blog
+    SET title=#{title},
+    label=#{label},
+    content=#{content},
+    updateTime=#{updatetime},
+    userId=#{userid}
+    WHERE blogId=#{blogid}
+  </update>
 </mapper>

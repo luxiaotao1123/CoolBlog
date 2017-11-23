@@ -16,7 +16,6 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //String token ="288bdac0-19b6-4a19-8807-5bab2e526445";
         String token = request.getHeader("token");
         boolean isSuccess = false;
         //BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
@@ -28,7 +27,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             System.out.println("客户端没有给出token信息");
             response.sendError(401,"对不起，您没有权限");
         }  else {
-            System.out.println("token无作用");
+            System.out.println("token无作用 ");
             response.sendError(401,"对不起，您没有权限");
         }
         return isSuccess;
