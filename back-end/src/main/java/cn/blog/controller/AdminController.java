@@ -59,6 +59,7 @@ public class AdminController {
             @ApiImplicitParam(name = "content",value = "文章内容",required = true,dataType = "String"),
             @ApiImplicitParam(name = "userID",value = "用户Id",required = true,dataType = "Integer")
     })
+<<<<<<< HEAD
     @PostMapping(value = "Blog")
     public R1 postBlog(@RequestBody String Blog, HttpServletRequest request){
         Blog blog1= JSONObject.parseObject(Blog,Blog.class);
@@ -66,6 +67,16 @@ public class AdminController {
         int userId = tokenMapper.finduserIdByToken(token);
         Date now = new Date();
         Blog blog = new Blog(blog1.getTitle(),blog1.getLabel(),blog1.getContent(),now,userId);
+=======
+    @PostMapping  (value = "Blog")
+    //public R1 postBlog(@RequestParam("title")String title, @RequestParam("label")String label, @RequestParam("content")String content, HttpServletRequest request){
+    public R1 postBlog(@RequestBody Blog blog, HttpServletRequest request){
+        String token = request.getHeader("token");
+        int userId = tokenMapper.finduserIdByToken(token);
+        Date updateTime = new Date();
+        blog.setUpdatetime(updateTime);
+        blog.setUserid(userId);
+>>>>>>> 11995f3ae037c902353ac861d2b85f0484eb6659
         try {
             blogService.saveBlog(blog);
         }catch (Exception e){
