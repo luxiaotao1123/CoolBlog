@@ -104,7 +104,7 @@ export default {
         console.log(y)
         if (valid) {
           service({
-            url: '/api/admin/Blog',
+            url: '/api/admin/blog',
             method: 'post',
             contentType: 'application/json',
             data: y

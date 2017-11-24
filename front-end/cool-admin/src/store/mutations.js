@@ -11,18 +11,18 @@ const mutations = {
   [types.LOGIN]: (state, data) => {
         // 更改token的值
     state.token = data
-    window.sessionStorage.setItem('token', data)
+    window.localStorage.setItem('token', data)
   },
   [types.LOGOUT]: (state) => {
         // 登出的时候要清除token
     state.token = null
-    window.sessionStorage.removeItem('token')
-    window.sessionStorage.removeItem('userId')
+    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('userId')
   },
     // 这步可有可无，根据自己需求去写
   [types.USERID]: (state, id) => {
     state.userid = id
-    window.sessionStorage.setItem('userId', id)
+    window.localStorage.setItem('userId', id)
   }
 
 }

@@ -1,14 +1,14 @@
 <template>
 <section class="app-navbar">
   <Col span="8">
-     <Menu>
+     <Menu :active-name="active.item" :open-names="[active.sub]">
          <Submenu  v-for="(item, index) in list" :index="item.path" :key="item.id" :name='item.path'>
              <template slot="title" >
                         <Icon type="ios-paper"></Icon>
                         {{item.label}}
             </template>
              <!-- <router-link :to="i.path"> -->
-             <MenuItem v-for="(i, subIndex) in item.list" :index="i.path" :key="'/blog/'+i.path" :name="'/blog/'+i.path"  @click.native="go(i.path)">
+             <MenuItem v-for="(i, subIndex) in item.list" :index="i.path" :key="'/admin/'+i.path" :name="'/admin/'+i.path"  @click.native="go(i.path)">
                {{i.label}}
              <!-- </router-link> -->
              </MenuItem>
@@ -23,7 +23,11 @@ import routes from '../router/index.js'
 export default {
   data () {
     return {
-      list: []
+      list: [],
+      active: {
+        sub: '',
+        item: ''
+      }
     }
   },
   computed: {
@@ -45,6 +49,8 @@ export default {
       let routelist = routeli
       // let routelist = routelist.push(routerlist1)
       console.log(routelist)
+      console.log(this.$route.path)
+      this.active.item = this.$route.path
       let list = []
       routelist.forEach(item => {
         if (item.menu === false || !item.name) {
@@ -73,6 +79,7 @@ export default {
         list.push(menuItem)
       })
       this.list = list
+      this.active.sub = list[0].path
     },
     go (name) {
       // console.log(name)

@@ -8,6 +8,7 @@ import * as types from './types.js'
 export default {
   UserLogin ({ commit }, data) {
     commit(types.LOGIN, data)
+    // console.log(data)
   },
   UserLogout ({ commit }) {
     commit(types.LOGOUT)

@@ -91,6 +91,7 @@ export default {
                 let token = response.data.token.token
                 let UserId = response.data.token.userid
                 that.$store.dispatch('UserLogin', token)
+                // that.$store.commit(types.LOGIN, token)
                 that.$store.dispatch('UserId', UserId)
                 if (that.$route.query.back) {
                   that.$router.replace(this.$route.query.back)
@@ -98,6 +99,7 @@ export default {
                   that.$router.replace({
                     name: '博客管理'
                   })
+                  that.$forceUpdate()
                 }
               } else {
                 that.$Message.error('Fail! ')
