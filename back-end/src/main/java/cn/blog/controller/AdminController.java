@@ -8,6 +8,8 @@ import cn.blog.dao.HandleMapper;
 import cn.blog.dao.TokenMapper;
 import cn.blog.service.BlogService;
 import cn.blog.utils.R1;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -44,10 +46,13 @@ public class AdminController {
     }
 
     @ApiOperation(value = "拿到所有博客",notes = "")
+    @ApiImplicitParam(name = "pageNum",value = "当前页码",required = true,dataType = "Integer")
     @GetMapping(value = "blogs")
-    public R1 getBlog(){
-        Map<String, Object> map = blogService.getALLBlog();
-        return R1.ok(map);
+    public R1 ajaxBlog(@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum){
+        PageHelper.startPage(pageNum,5);
+        List<Blog> blogList = blogService.getALLBlog();
+        PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
+        return R1.add("blog",pageInfo);
     }
 
     @ApiOperation(value = "拿到一篇博客的详情",notes = "成功返回blog对象，失败返回500")

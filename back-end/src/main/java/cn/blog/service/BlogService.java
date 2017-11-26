@@ -4,13 +4,14 @@ package cn.blog.service;
 
 import cn.blog.bean.Blog;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by liuwen on 2017/11/16.
  */
 public interface BlogService {
-    public Map<String,Object> getALLBlog();
+    public List<Blog> getALLBlog();
 
     public void saveBlog(Blog blog);
 

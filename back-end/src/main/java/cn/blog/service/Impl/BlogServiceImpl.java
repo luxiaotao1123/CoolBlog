@@ -19,11 +19,8 @@ public class BlogServiceImpl implements BlogService {
     private BlogMapper blogMapper;
 
     @Override
-    public Map<String,Object> getALLBlog() {
-        Map<String, Object> map = new LinkedHashMap<String,Object>();
-        List<Blog> blogList = blogMapper.selectByExample(new BlogExample());
-        map.put("blog",blogList);
-        return map;
+    public List<Blog> getALLBlog() {
+        return blogMapper.selectByExample(new BlogExample());
     }
 
     @Override
