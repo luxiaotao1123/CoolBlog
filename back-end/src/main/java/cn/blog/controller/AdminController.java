@@ -76,11 +76,23 @@ public class AdminController {
     }
 
     @ApiOperation(value = "删除一篇博客",notes = "成功返回200，失败返回500")
-    @ApiImplicitParam(name = "blogIds",value = "博客Ids",required = true,dataType = "List")
+    @ApiImplicitParam(name = "blogId",value = "博客Id",required = true,dataType = "Integer")
     @DeleteMapping(value = "blog/{blogId}")
-    public R1 deleteBlogs(@PathVariable("blogId")Integer blogId){
+    public R1 deleteBlog(@PathVariable("blogId")Integer blogId){
         try {
             blogService.deleteOneBlog(blogId);
+        }catch (MethodArgumentTypeMismatchException exception){
+            R1.error(500,"服务器内部错误");
+        }
+        return R1.success(200,"删除博客成功");
+    }
+
+    @ApiOperation(value = "删除多篇博客",notes = "成功返回200，失败返回500")
+    @ApiImplicitParam(name = "blogIds",value = "博客Ids",required = true,dataType = "Array")
+    @DeleteMapping(value = "blogs")
+    public R1 deleteBlogs(@RequestParam("blogIds")Integer[] blogIds){
+        try {
+            blogService.deleteMoreBlogs(blogIds);
         }catch (MethodArgumentTypeMismatchException exception){
             R1.error(500,"服务器内部错误");
         }

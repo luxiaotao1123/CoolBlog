@@ -261,4 +261,13 @@
     FROM blog
     WHERE label like #{label}
   </select>
+  <delete id="deleteMoreBlogs" parameterType="Integer[]">
+    DELETE FROM blog
+    <where>
+      blogId
+      <foreach collection="array" item="ids" open="in (" close=")" separator=",">
+        #{ids}
+      </foreach>
+    </where>
+  </delete>
 </mapper>

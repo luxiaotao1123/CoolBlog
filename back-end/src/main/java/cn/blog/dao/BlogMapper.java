@@ -33,4 +33,6 @@ public interface BlogMapper {
     int updateByBlog(Blog blog);
 
     List<Blog> selectBlogsByLabel(String label);
+
+    int deleteMoreBlogs(Integer[] blogIds);
 }

@@ -53,5 +53,10 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.selectBlogsByLabel(label);
     }
 
+    @Override
+    public void deleteMoreBlogs(Integer[] blogIds) {
+        blogMapper.deleteMoreBlogs(blogIds);
+    }
+
 
 }

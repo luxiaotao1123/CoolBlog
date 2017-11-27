@@ -22,4 +22,6 @@ public interface BlogService {
     public Blog updateOneBlog(Blog blog);
 
     public List<Blog> selectBlogsByLabel(String label);
+
+    public void deleteMoreBlogs(Integer[] blogIds);
 }
