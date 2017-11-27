@@ -31,4 +31,6 @@ public interface BlogMapper {
     Blog queryByblogId(int blogId);
 
     int updateByBlog(Blog blog);
+
+    List<Blog> selectBlogsByLabel(String label);
 }

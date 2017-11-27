@@ -45,14 +45,26 @@ public class AdminController {
         return R1.ok(map);
     }
 
-    @ApiOperation(value = "拿到所有博客",notes = "")
-    @ApiImplicitParam(name = "pageNum",value = "当前页码",required = true,dataType = "Integer")
+    @ApiOperation(value = "拿到所有博客（分页）",notes = "")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum",value = "当前页码",required = true,dataType = "Integer"),
+            @ApiImplicitParam(name = "pageSize",value = "每页显示个数",required = true,dataType = "Integer")
+    })
     @GetMapping(value = "blogs")
-    public R1 ajaxBlog(@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum){
-        PageHelper.startPage(pageNum,5);
+    public R1 ajaxBlog(@RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum,
+                       @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<Blog> blogList = blogService.getALLBlog();
         PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
         return R1.add("blog",pageInfo);
+    }
+
+    @ApiOperation(value = "拿到所有博客（分类）",notes = "在blog/{标签}后面在分类路由")
+    @ApiImplicitParam(name = "label",value = "博客标签",required = true,dataType = "String")
+    @GetMapping(value = "blogs/{label}")
+    public R1 getLableBlogs(@PathVariable("label")String label){
+        List<Blog> blogList = blogService.selectBlogsByLabel(label);
+        return R1.add("blogbylabel",blogList);
     }
 
     @ApiOperation(value = "拿到一篇博客的详情",notes = "成功返回blog对象，失败返回500")

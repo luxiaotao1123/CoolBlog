@@ -48,5 +48,10 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.queryByblogId(blog.getBlogid());
     }
 
+    @Override
+    public List<Blog> selectBlogsByLabel(String label) {
+        return blogMapper.selectBlogsByLabel(label);
+    }
+
 
 }

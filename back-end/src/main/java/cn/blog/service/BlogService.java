@@ -20,4 +20,6 @@ public interface BlogService {
     public void deleteOneBlog(int blogId);
 
     public Blog updateOneBlog(Blog blog);
+
+    public List<Blog> selectBlogsByLabel(String label);
 }

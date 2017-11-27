@@ -1,7 +1,9 @@
 package cn.blog.test;
 
+import cn.blog.bean.Blog;
 import cn.blog.bean.Handle;
 import cn.blog.bean.HandleExample;
+import cn.blog.dao.BlogMapper;
 import cn.blog.dao.HandleMapper;
 import cn.blog.dao.TokenMapper;
 import org.junit.Test;
@@ -22,6 +24,9 @@ public class test2 {
 
     @Autowired
     private HandleMapper handleMapper;
+
+    @Autowired
+    private BlogMapper blogMapper;
 
     @Test
     public void Test2(){
@@ -49,5 +54,11 @@ public class test2 {
         String token = "e53d4a4a-19c8-4227-8064-2ffa417e2dd6";
         int userId = tokenMapper.finduserIdByToken(token);
         System.out.println(userId);
+    }
+
+    @Test
+    public void Test5(){
+        List<Blog> list = blogMapper.selectBlogsByLabel("Python");
+        System.out.println(list.size());
     }
 }

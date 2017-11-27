@@ -255,4 +255,10 @@
     userId=#{userid}
     WHERE blogId=#{blogid}
   </update>
+  <select id="selectBlogsByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM blog
+    WHERE label like #{label}
+  </select>
 </mapper>

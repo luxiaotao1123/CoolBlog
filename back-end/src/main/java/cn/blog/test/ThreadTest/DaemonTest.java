@@ -12,7 +12,6 @@ public class DaemonTest {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-
                 }
             }
         }
@@ -21,9 +20,9 @@ public class DaemonTest {
 
     public static void main(String[] args) throws InterruptedException {
         DaemonT daemonT = new DaemonT();
+        daemonT.setPriority(10);
         daemonT.setDaemon(true);
         daemonT.start();
-
         Thread.sleep(2000);
     }
 }
