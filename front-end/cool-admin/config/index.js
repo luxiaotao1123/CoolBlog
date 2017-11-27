@@ -12,8 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:8088/',
-        // target: 'http://106.15.205.155:8088/',
+        // target: 'http://localhost:8088/',
+        target: 'http://106.15.205.155:8088/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
@@ -65,6 +65,16 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    proxyTable: {
+      '/api': {
+        // target: 'http://localhost:8088/',
+        target: 'http://106.15.205.155:8088/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+   }
+    },
 
     /**
      * Source Maps
