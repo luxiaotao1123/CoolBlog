@@ -6,6 +6,7 @@
          </div>
         <Button @click="handleSelectAll(true)">全选</Button>
         <Button @click="handleSelectAll(false)">取消</Button>
+        <Button @click="deleteBlog" type="error">删除</Button>
     </div>
 </template>
 <script>
@@ -38,7 +39,8 @@ export default {
         }
       ],
       data1: [],
-      pageData: {}
+      pageData: {},
+      selectItems: []
     }
   },
   methods: {
@@ -112,14 +114,58 @@ export default {
     },
     selectItem (item) {
       console.log(item)
+      this.selectItems = []
       let sel = []
       for (let index = 0; index < item.length; index++) {
         const element = item[index].id
         sel.push(element)
       }
       console.log(sel)
+      this.selectItems.push(sel)
+      // this.selectItems = sel
+    },
+    deleteBlog () {
+      // let blogId = this.selectItems
+      let selectItems = this.selectItems
+      let that = this
+      let ids = selectItems.join(',')
+      console.log(typeof selectItems)
+      if (selectItems.length !== 0) {
+        console.log(selectItems)
+        this.$Modal.confirm({
+          title: '提示',
+          content: '真的要删除吗？？？',
+          onOk: () => {
+            service.delete('/api/admin/blogs', {
+              params: {
+                blogIds: ids
+              }
+            })
+            .then(function (responce) {
+              if (responce.data.code === 200) {
+                console.log(responce)
+                that.$Message.info('已删除')
+              } else {
+                that.$Message.info('错误')
+              }
+              location.reload()
+            })
+            // .catch(function (error) {
+            //   console.log(error)
+            //   that.$Message.info('错误')
+            // })
+          },
+          onCancel: () => {
+            this.$Message.info('已取消')
+          }
+        })
+      } else {
+        this.$Notice.error({
+          title: '提示',
+          desc: '朋友你好像没有选择吧! '
+        })
+      }
     }
-
   },
   mounted () {
     this.initList()
