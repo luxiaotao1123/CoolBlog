@@ -87,7 +87,7 @@ public class AdminController {
         return R1.success(200,"删除博客成功");
     }
 
-    @ApiOperation(value = "删除多篇博客",notes = "成功返回200，失败返回500 ")
+    @ApiOperation(value = "删除多篇博客 ",notes = "成功返回200，失败返回500")
     @ApiImplicitParam(name = "blogIds",value = "博客Ids",required = true,dataType = "Array")
     @DeleteMapping(value = "blogs")
     public R1 deleteBlogs(@RequestParam("blogIds")Integer[] blogIds){
