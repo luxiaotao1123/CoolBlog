@@ -12,8 +12,6 @@ const service = axios.create({
 // let token = window.sessionStorage.getItem('token')
 // let token = store.state.token
 // console.log(token)
-// service.defaults.headers.post['token'] = store.state.token
-// service.defaults.headers.post['userId'] = store.state.userid
 // service.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;'
 service.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8'
 
@@ -23,7 +21,7 @@ service.interceptors.request.use(config => {
   if (store.state.token) {
     let token = store.state.token
     config.headers['token'] = token  // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-    console.log(token)
+    // console.log(token)
   }
   return config
 }, error => {
