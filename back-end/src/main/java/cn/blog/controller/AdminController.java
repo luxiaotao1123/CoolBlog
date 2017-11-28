@@ -99,7 +99,7 @@ public class AdminController {
         return R1.success(200,"删除博客成功");
     }
 
-    @ApiOperation(value = "创建一篇博客",notes = "成功返回201，失败返回500,无权限返回401")
+    @ApiOperation(value = "创建一篇博客 ",notes = "成功返回201，失败返回500,无权限返回401")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "title",value = "标题",required = true,dataType = "String"),
             @ApiImplicitParam(name = "label",value = "标签分类",required = true,dataType = "String"),
