@@ -104,7 +104,7 @@ public class AdminController {
             @ApiImplicitParam(name = "title",value = "标题",required = true,dataType = "String"),
             @ApiImplicitParam(name = "label",value = "标签分类",required = true,dataType = "String"),
             @ApiImplicitParam(name = "content",value = "文章内容",required = true,dataType = "String"),
-            @ApiImplicitParam(name = "userID",value = "用户Id",required = true,dataType = "Integer")
+            @ApiImplicitParam(name = "userid",value = "用户Id",required = true,dataType = "Integer")
     })
     @PostMapping(value = "blog")
     public R1 postBlog(@RequestBody Blog blog, HttpServletRequest request){
@@ -126,11 +126,12 @@ public class AdminController {
             @ApiImplicitParam(name = "title",value = "标题",required = true,dataType = "String"),
             @ApiImplicitParam(name = "label",value = "标签分类",required = true,dataType = "String"),
             @ApiImplicitParam(name = "content",value = "文章内容",required = true,dataType = "String"),
-            @ApiImplicitParam(name = "userid",value = "用户Id",required = true,dataType = "Integer")
+            @ApiImplicitParam(name = "userid",value = "用户Id",required = true,dataType = "Integer"),
+            @ApiImplicitParam(name = "blogid",value = "博客Id",required = true,dataType = "Integer")
     })
     @PutMapping(value = "blog")
     public R1 updateBlog(@RequestBody Blog blog){
         blog.setUpdatetime(new Date());
-        ;return R1.add("blog",blogService.updateOneBlog(blog));
+        return R1.add("blog",blogService.updateOneBlog(blog));
     }
 }
