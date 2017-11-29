@@ -5,6 +5,7 @@ import cn.blog.bean.BlogExample;
 import cn.blog.dao.BlogMapper;
 import cn.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 
