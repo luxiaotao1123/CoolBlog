@@ -129,6 +129,9 @@ export default {
   },
   mounted () {
     this.initBlog()
+  },
+  watch: {
+    '$route': 'initBlog'
   }
 }
 </script>
