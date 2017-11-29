@@ -6,6 +6,7 @@ import HelloWorld from '@/components/HelloWorld'
 import CommonLayout from '../layout'
 import blogEdit from '../views/blogEdit'
 import blogList from '../views/blogList'
+import blogReEdit from '../views/blogReEdit'
 
 Vue.use(Router)
 
@@ -47,6 +48,16 @@ const router = new Router({
           name: 'blogEdit',
           meta: {
             label: '编辑博客',
+            requiresAuth: true
+          }
+        },
+        {
+          path: 'blogReEdit/:blogid',
+          component: blogReEdit,
+          name: 'blogReEdit',
+          menu: false,
+          meta: {
+            label: '再编辑博客',
             requiresAuth: true
           }
         },

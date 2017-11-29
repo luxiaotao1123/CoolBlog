@@ -8,7 +8,7 @@
                         {{item.label}}
             </template>
              <!-- <router-link :to="i.path"> -->
-             <MenuItem v-for="(i, subIndex) in item.list" :index="i.path" :key="'/admin/'+i.path" :name="'/admin/'+i.path"  @click.native="go(i.path)">
+             <MenuItem v-for="(i, subIndex) in item.list" :index="i.path" :key="'/admin/'+i.path" :name="'/admin/'+i.path"  @click.native="go('/admin/'+i.path)">
                {{i.label}}
              <!-- </router-link> -->
              </MenuItem>

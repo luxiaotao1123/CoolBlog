@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-   <Form  ref="blogFormItem" :model="blogFormItem" :label-width="80" :rules="ruleValidate" >
+   <Form   ref="blogFormItem" :model="blogFormItem" :label-width="80" :rules="ruleValidate" >
      <FormItem label="Title:" prop="title">
        <Row>
          <Col  :xs="20" :sm="16" :md="12" :lg="8">
@@ -25,9 +25,6 @@
             <quill-editor ref="myTextEditor"
                           v-model="content"
                           :config="editorOption"
-                          @blur="onEditorBlur($event)"
-                          @focus="onEditorFocus($event)"
-                          @ready="onEditorReady($event)"
                           @change="onEditorChange($event)"
                           >
             </quill-editor>
@@ -40,19 +37,17 @@
     </FormItem>
    </Form>
 </div>
-</template>
+</template> 
 <script>
 import { quillEditor } from 'vue-quill-editor'
 import service from '../utils/service.js'
-// import QS from 'querystring'
-
 export default {
   components: {
     quillEditor
   },
   data () {
     return {
-      content: '<h2>Write here</h2>',
+      content: '',
       editorOption: {
         // something config
       },
@@ -74,44 +69,49 @@ export default {
       }
     }
   },
-  // if you need to manually control the data synchronization, parent component needs to explicitly emit an event instead of relying on implicit binding
-  // 如果需要手动控制数据同步，父组件需要显式地处理changed事件
   methods: {
-    onEditorBlur (editor) {
-      // console.log('editor blur!', editor)
-    },
-    onEditorFocus (editor) {
-      // console.log('editor focus!', editor)
-    },
-    onEditorReady (editor) {
-      // console.log('editor ready!', editor)
-    },
-    onEditorChange ({ editor, html, text }) {
-      // console.log(html)
-      this.content = html
+    onEditorChange ({editor, html, text}) {
       this.blogFormItem.content = html
     },
-    // submit the form
+    initBlog () {
+      console.log(this.$route.params.blogid)
+      let blogid = this.$route.params.blogid
+      let that = this
+      service.get('/api/admin/blog/' + blogid)
+      .then(function (responce) {
+        console.log(responce)
+        that.blogFormItem.title = responce.data.blog.title
+        that.blogFormItem.label = responce.data.blog.label
+        that.blogFormItem.blogid = responce.data.blog.blogid
+        that.blogFormItem.userid = responce.data.blog.userid
+        that.blogFormItem.content = responce.data.blog.content
+        that.content = responce.data.blog.content
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    },
+    handleReset (name) {
+      this.$refs[name].resetFields()
+    },
     handleSubmit (name) {
       this.$refs[name].validate(valid => {
         console.log(this.blogFormItem)
         let that = this
         let item = this.blogFormItem
-        // let data = 'title=' + item.title + '&label=' + item.label + '&content=' + item.content
-        // let x = QS.stringify(item)
-        let y = JSON.stringify(item)
+        // let y = JSON.stringify(item)
         // console.log(x + data)
-        console.log(y)
+        console.log(item)
         if (valid) {
           service({
             url: '/api/admin/blog',
-            method: 'post',
+            method: 'put',
             contentType: 'application/json',
-            data: y
+            data: item
           })
           .then(function (response) {
             console.log(response)
-            if (response.status === 200 && response.data.code === 201) {
+            if (response.status === 200 || response.data.code === 200) {
               that.$Message.success('提交成功')
               that.$forceUpdate()
             } else {
@@ -124,31 +124,12 @@ export default {
         } else {
           this.$Message.error('失败')
         }
-      }, 100)
-    },
-    handleReset (name) {
-      this.$refs[name].resetFields()
-    },
-    initForm () {
-      this.blogFormItem.label = ''
-      this.blogFormItem.title = ''
-      this.content = ''
-    }
-  },
-  // if you need to get the current editor object, you can find the editor object like this, the $ref object is a ref attribute corresponding to the dom redefined
-  // 如果你需要得到当前的editor对象来做一些事情，你可以像下面这样定义一个方法属性来获取当前的editor对象，实际上这里的$refs对应的是当前组件内所有关联了ref属性的组件元素对象
-  computed: {
-    editor () {
-      return this.$refs.myTextEditor.quillEditor
+      })
     }
   },
   mounted () {
-    // you can use current editor object to do something(editor methods)
-    console.log('this is my editor', this.editor)
-    // this.editor to do something...
-  },
-  watch: {
-    '$route': 'initForm'
+    this.initBlog()
   }
 }
 </script>
+

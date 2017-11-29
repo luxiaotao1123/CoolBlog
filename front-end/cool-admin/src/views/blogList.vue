@@ -11,6 +11,7 @@
 </template>
 <script>
 import service from '../utils/service.js'
+import * as moment from 'moment'
 export default {
   data () {
     return {
@@ -36,6 +37,31 @@ export default {
         {
           title: '更新时间',
           key: 'updatetime'
+        },
+        {
+          title: '操作',
+          key: 'action',
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    // console.log(params.row.id)
+                    let id = params.row.id
+                    this.goEdit(id)
+                  }
+                }
+              }, '再编辑')
+            ])
+          }
         }
       ],
       data1: [],
@@ -69,7 +95,7 @@ export default {
             title: item.title,
             label: item.label,
             abstract: item.content.substring(4, 10),
-            updatetime: item.updatetime
+            updatetime: moment(item.updatetime).format('YYYY-MM-DD')
           })
         })
         console.log(list)
@@ -102,10 +128,11 @@ export default {
         orglist.forEach(item => {
           list.push({
             // title: '标题',
+            id: item.blogid,
             title: item.title,
             label: item.label,
             abstract: item.content.substring(4, 10),
-            updatetime: item.updatetime
+            updatetime: moment(item.updatetime).format('YYYY-MM-DD')
           })
         })
         // console.log(list)
@@ -165,10 +192,17 @@ export default {
           desc: '朋友你好像没有选择吧! '
         })
       }
+    },
+    goEdit (id) {
+      console.log(id)
+      this.$router.push({name: 'blogReEdit', params: { blogid: id }})
     }
   },
-  mounted () {
+  created () {
     this.initList()
+  },
+  watch: {
+    '$route': 'initList'
   }
 }
 </script> 
