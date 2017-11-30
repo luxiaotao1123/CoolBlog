@@ -1,6 +1,6 @@
 <template>
    
-        <Menu mode="horizontal" theme="dark" active-name="1">
+        <Menu mode="horizontal" class="header" active-name="1">
               <div class="layout-logo"></div>
               <Button @click.native="submit"type="primary" size="large" class="logout">logout</Button>
         </Menu>
@@ -46,6 +46,9 @@
     width:100%;
     z-index:3;
     box-shadow: 0px 0px 5px #f9f9f9;}
+    .header{
+      background: #cee2f5
+    }
     .fixed {
       position: absolute;
       top: 0px;

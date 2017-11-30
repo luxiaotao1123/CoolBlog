@@ -3,10 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>cool-admin</title>
+    <title>cool-blog</title>
+    <link rel="shortcut icon" href="doge.png" type="image/x-icon"  id='in_icon'/>
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
 </html>
+<script>
+  var head = document.getElementsByTagName('HEAD').item(0);
+ var linkimg = document.getElementById('in_icon');
+  window.onfocus = function () {
+  document.title = ' Cool-Blog ';
+  linkimg.href = 'doge.png'
+  console.log(linkimg.href)
+  // linkimg.getAttribute('href')
+};
+window.onblur = function () {
+  document.title = '快回来~页面崩溃了';
+  linkimg.href = 'cry.gif'
+};
+</script>
+

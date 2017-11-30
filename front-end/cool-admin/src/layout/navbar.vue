@@ -48,8 +48,8 @@ export default {
       let routeli = routes.options.routes
       let routelist = routeli
       // let routelist = routelist.push(routerlist1)
-      console.log(routelist)
-      console.log(this.$route.path)
+      // console.log(routelist)
+      // console.log(this.$route.path)
       this.active.item = this.$route.path
       let list = []
       routelist.forEach(item => {
@@ -94,11 +94,6 @@ export default {
 <style scoped>
 .app-navbar {
   z-index: 9999;
-}
-.welcome-box {
-  padding: 12px 0;
-  text-align: center;
-  border-bottom: 1px solid #efefef;
 }
 .nav-box {
   overflow: auto;

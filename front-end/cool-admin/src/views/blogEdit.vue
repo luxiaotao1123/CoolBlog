@@ -144,7 +144,7 @@ export default {
   },
   mounted () {
     // you can use current editor object to do something(editor methods)
-    console.log('this is my editor', this.editor)
+    // console.log('this is my editor', this.editor)
     // this.editor to do something...
   },
   watch: {
