@@ -27,7 +27,7 @@ public class StreamController {
             return R1.error(500,"文件为空");
         }
         String fileName = myfile.getOriginalFilename();     //获取上传文件的原名
-        logger.info(fileName+"文件已上传！");
+        logger.info(fileName+"文件已上传");
         String fileSuffix = fileName.substring(fileName.lastIndexOf("."));      //获取文件后缀名
         String newfileName = datefile+fileSuffix;
         //String filePath = "C:\\Users\\Administrator\\Desktop\\getFile\\";        //文件存储到本地的路径
