@@ -7,8 +7,13 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.io.IOException;
 
 
 @Configuration
@@ -19,12 +24,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return new TokenInterceptor();
     }
 
+    //拦截器
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(tokenInterceptor())
                 .addPathPatterns("/admin/**");
     }
 
-    @Bean       //转换还date数据
+    //转换date数据
+    @Bean
     public FastJsonHttpMessageConverter4 fastJsonHttpMessageConverter() {
         FastJsonHttpMessageConverter4 converter = new FastJsonHttpMessageConverter4();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
@@ -46,5 +53,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return converter;
     }
 
+    //图片流
+    @Bean(name = "multipartResolver")
+    public MultipartResolver multipartResolver() throws IOException {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("UTF-8");
+        resolver.setMaxInMemorySize(10240);     //最大内存大小 (10240)
+        resolver.setMaxUploadSize(50*1024*1024);    //上传文件大小(单位为字节) 50M     50*1024*1024
+        return resolver;
+    }
 
 }
