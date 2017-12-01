@@ -43,7 +43,7 @@ public class StreamController {
             myfile.transferTo(getFile);     //把内存文件写到磁盘里
             return R1.success(200,"106.15.205.155:8079/"+newfileName);
         }
-        return R1.error(500,"目标文件夹不存在");
+        return R1.error(500,"目标文件夹不存在！");
     }
 }
 
