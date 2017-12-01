@@ -81,7 +81,7 @@ export default {
         pageData
       })
       .then(function (responce) {
-        console.log(responce.data)
+        // console.log(responce.data)
         // 分页
         that.pageData.pageSize = Number(responce.data.blog.pageSize)
         that.pageData.pageNum = Number(responce.data.blog.pageNum)
@@ -98,7 +98,7 @@ export default {
             updatetime: moment(item.updatetime).format('YYYY-MM-DD')
           })
         })
-        console.log(list)
+        // console.log(list)
         that.data1 = list
       })
     },
@@ -108,18 +108,18 @@ export default {
       this.filterData()
     },
     filterData (fData) {
-      let data = {}
+      // let data = {}
       let pageNum = this.pageData.pageNum
       let list = []
       let that = this
-      console.log(data)
+      // console.log(data)
       service.get('/api/admin/blogs', {
         params: {
           pageNum: pageNum
         }
       })
       .then(function (responce) {
-        console.log('change!')
+        // console.log('change!')
         // 分页
         // that.pageData.pageSize = Number(responce.data.blog.pageSize)
         that.pageData.pageNum = Number(responce.data.blog.pageNum)
@@ -194,7 +194,7 @@ export default {
       }
     },
     goEdit (id) {
-      console.log(id)
+      // console.log(id)
       this.$router.push({name: 'blogReEdit', params: { blogid: id }})
     }
   },
