@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import routes from '../router/index.js'
+import routes from '@/router/index.js'
 export default {
   data () {
     return {
