@@ -176,7 +176,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: url(/images/bg.jpg);
+  background: url(/src/statics/images/bg.jpg);
 }
 .bg-bubbles li {
   position: absolute;

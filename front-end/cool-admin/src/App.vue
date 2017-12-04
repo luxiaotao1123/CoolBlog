@@ -2,8 +2,6 @@
   <div id="app">
  
     <router-view/>
- 
-    
     <backtotop></backtotop>
   </div>
 </template>

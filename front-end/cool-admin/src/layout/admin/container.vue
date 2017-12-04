@@ -46,7 +46,10 @@
   height: 100%;
   left: 0px;
   top: 0px;
-  background: #2d3035;
+  /* background-color: #2d3035; */
+  background-image: url(/src/statics/images/manubg.jpg);
+  background-repeat:no-repeat;
+  
 }
 .router-view-box {
   overflow: auto;

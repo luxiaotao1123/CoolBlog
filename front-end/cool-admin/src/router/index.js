@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/index.js'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 // import Login from '@/views/login'
-import CommonLayout from '../layout'
-import blogEdit from '../views/blogEdit'
-import blogList from '../views/blogList'
-import blogReEdit from '../views/blogReEdit'
+// import CommonLayout from '../layout/admin'
+// import blogEdit from '../views/blogEdit'
 
 Vue.use(Router)
 
@@ -16,13 +14,18 @@ const Login = resolve => {
     resolve(require('../views/Login.vue'))
   })
 }
+const Blogs = resolve => {
+  require.ensure(['@/layout/cool-blog'], () => {
+    resolve(require('@/layout/cool-blog'))
+  })
+}
 
 const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'blogs',
+      component: Blogs,
       menu: false
     },
     {
@@ -35,7 +38,9 @@ const router = new Router({
       path: '/admin',
       name: '博客管理',
       icon: 'bars',
-      component: CommonLayout,
+      component: function (resolve) {
+        require(['../layout/admin'], resolve)
+      },
       redirect: '/admin/blogEdit',
       meta: {
         label: '博客管理',
@@ -44,7 +49,9 @@ const router = new Router({
       children: [
         {
           path: 'blogEdit',
-          component: blogEdit,
+          component: function (resolve) {
+            require(['../views/blogEdit'], resolve)
+          },
           name: 'blogEdit',
           meta: {
             label: '编辑博客',
@@ -53,7 +60,9 @@ const router = new Router({
         },
         {
           path: 'blogReEdit/:blogid',
-          component: blogReEdit,
+          component: function (resolve) {
+            require(['../views/blogReEdit'], resolve)
+          },
           name: 'blogReEdit',
           menu: false,
           meta: {
@@ -63,7 +72,9 @@ const router = new Router({
         },
         {
           path: 'bloglist',
-          component: blogList,
+          component: function (resolve) {
+            require(['../views/blogList'], resolve)
+          },
           name: 'blogList',
           meta: {
             label: '博客列表',

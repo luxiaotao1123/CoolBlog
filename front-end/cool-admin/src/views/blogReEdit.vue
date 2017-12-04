@@ -77,31 +77,33 @@ export default {
       console.log(this.$route.params.blogid)
       let blogid = this.$route.params.blogid
       let that = this
-      service.get('/api/admin/blog/' + blogid)
-      .then(function (responce) {
-        console.log(responce)
-        that.blogFormItem.title = responce.data.blog.title
-        that.blogFormItem.label = responce.data.blog.label
-        that.blogFormItem.blogid = responce.data.blog.blogid
-        that.blogFormItem.userid = responce.data.blog.userid
-        that.blogFormItem.content = responce.data.blog.content
-        that.content = responce.data.blog.content
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      if (blogid !== null) {
+        service.get('/api/admin/blog/' + blogid)
+        .then(function (responce) {
+          console.log(responce)
+          that.blogFormItem.title = responce.data.blog.title
+          that.blogFormItem.label = responce.data.blog.label
+          that.blogFormItem.blogid = responce.data.blog.blogid
+          that.blogFormItem.userid = responce.data.blog.userid
+          that.blogFormItem.content = responce.data.blog.content
+          that.content = responce.data.blog.content
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+      }
     },
     handleReset (name) {
       this.$refs[name].resetFields()
     },
     handleSubmit (name) {
       this.$refs[name].validate(valid => {
-        console.log(this.blogFormItem)
+        // console.log(this.blogFormItem)
         let that = this
         let item = this.blogFormItem
         // let y = JSON.stringify(item)
         // console.log(x + data)
-        console.log(item)
+        // console.log(item)
         if (valid) {
           service({
             url: '/api/admin/blog',
@@ -129,6 +131,9 @@ export default {
   },
   mounted () {
     this.initBlog()
+  },
+  watch: {
+    '$route': 'initBlog'
   }
 }
 </script>

@@ -13,8 +13,8 @@ module.exports = {
     proxyTable: {
       '/api': {
         // target: 'http://localhost:8088/',
-        // target: 'http://106.15.205.155:8088/',
-        target: 'http://192.168.0.102:8088/',
+        target: 'http://106.15.205.155:8088/',
+        // target: 'http://192.168.0.102:8088/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
@@ -69,8 +69,8 @@ module.exports = {
     proxyTable: {
       '/api': {
         // target: 'http://localhost:8088/',
-        target: 'http://106.15.205.155:8088/',
-        // target: 'http://192.168.0.102:8088/',
+        // target: 'http://106.15.205.155:8088/',
+        target: 'http://192.168.0.102:8088/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
