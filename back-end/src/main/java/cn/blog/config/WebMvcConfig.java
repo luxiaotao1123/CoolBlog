@@ -7,7 +7,6 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -53,7 +52,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return converter;
     }
 
-    //图片流
+    //文件流
     @Bean(name = "multipartResolver")
     public MultipartResolver multipartResolver() throws IOException {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();

@@ -16,5 +16,7 @@ public class test1 {
         }
         System.out.println(now);
         System.out.println(later);
+        test3 test = test3.getInstance();
+
     }
 }
