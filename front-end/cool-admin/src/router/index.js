@@ -26,7 +26,19 @@ const router = new Router({
       path: '/',
       name: 'blogs',
       component: Blogs,
-      menu: false
+      menu: false,
+      // redirect: '/',
+      children: [
+        {
+          path: '/home',
+          component: function (resolve) {
+            require(['../views/home'], resolve)
+          },
+          name: 'home',
+          menu: false,
+          meta: {}
+        }
+      ]
     },
     {
       path: '/login',

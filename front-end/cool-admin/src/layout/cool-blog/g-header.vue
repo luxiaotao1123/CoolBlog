@@ -6,10 +6,10 @@
           <div class="close_icon"@click="fadeOut" ><Icon type="close-round"></Icon></div>
           <ul class="nav-links" id='nav-l' >
               <li>
-                <router-link to="#"><Icon type="android-home"></Icon>  首页  </router-link>
+                <router-link to="/home"><Icon type="android-home"></Icon>  首页  </router-link>
                 </li>
               <li>
-                  <router-link to="#"><Icon type="ios-pricetags"></Icon>  分类  </router-link>
+                  <router-link to="/categery"><Icon type="ios-pricetags"></Icon>  分类  </router-link>
               </li>
               <li>
                   <router-link to="#"><Icon type="android-archive"></Icon>  归档  </router-link>
