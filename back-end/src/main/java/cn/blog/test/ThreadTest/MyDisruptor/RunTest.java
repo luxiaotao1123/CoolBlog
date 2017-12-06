@@ -31,7 +31,7 @@ public class RunTest {
         disruptor.start();      //Disruptor启动
         RingBuffer<MyData> ringBuffer = disruptor.getRingBuffer();      //实例化环形队列并与Disruptor绑定
         Producers producers = new Producers(ringBuffer);        //实例化生产者并绑定ringBuffer
-        ByteBuffer byteBuffe = ByteBuffer.allocate(8);      //
+        ByteBuffer byteBuffe = ByteBuffer.allocate(8);      //创建一个容量为256字节的ByteBuffer
         for (long n = 0;true;n++){
             byteBuffe.putLong(0,n);
             producers.putData(byteBuffe);

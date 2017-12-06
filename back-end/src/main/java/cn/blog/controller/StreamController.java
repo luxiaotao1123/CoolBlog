@@ -44,5 +44,28 @@ public class StreamController {
         }
         return R1.error(500,"目标文件夹不存在");
     }
+
+    @ApiOperation(value = "上传博客预览图API",notes = "")
+    @ApiImplicitParam(name = "myfile",value = "上传的博客预览图",required = true,dataType = "multipart/form-data")
+    @PostMapping("blog/preview")
+    public R1 previewUpload(@RequestParam("blogpreview") MultipartFile blogpreview) throws IOException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String datefile = sdf.format(new Date());
+        if (blogpreview.isEmpty()){
+            return R1.error(500,"预览图为空");
+        }
+        String previewName = blogpreview.getOriginalFilename();
+        logger.info(previewName+"文件已上传");
+        String previewSuffix  = previewName.substring(previewName.lastIndexOf("."));
+        String newPreviewName = datefile+previewSuffix;
+        //String filePath = "C:\\Users\\Administrator\\Desktop\\getFile\\preview\\";        //文件存储到本地的路径
+        String filePath = "//picture/preview/";
+        File getFile = new File(filePath+newPreviewName);
+        if (getFile.getParentFile().exists()){
+            blogpreview.transferTo(getFile);
+            return R1.success(200,"106.15.205.155:8079/preview/"+newPreviewName);
+        }
+        return R1.error(500,"目标文件夹不存在");
+    }
 }
 
