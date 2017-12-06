@@ -7,7 +7,7 @@
                </div>
                <div class="article-title">
                    <div class="title-box">
-                    <span class="title-white">{{item.title}} </span>
+                    <span class="title-white"><router-link :to="{ name: 'blog', params: { id: item.blogid }}"> {{item.title}}</router-link> </span>
                     <span class="title-date">{{item.updatetime}}</span>
                    </div>
                </div>
