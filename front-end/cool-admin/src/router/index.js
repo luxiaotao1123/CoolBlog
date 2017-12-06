@@ -37,6 +37,15 @@ const router = new Router({
           name: 'home',
           menu: false,
           meta: {}
+        },
+        {
+          path: '/blog/:id',
+          component: function (resolve) {
+            require(['../views/blogView'], resolve)
+          },
+          name: 'blog',
+          menu: false,
+          meta: {}
         }
       ]
     },
