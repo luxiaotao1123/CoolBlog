@@ -9,6 +9,8 @@
     <result column="updateTime" jdbcType="DATE" property="updatetime" />
     <result column="userId" jdbcType="INTEGER" property="userid" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="preview" jdbcType="VARCHAR" property="preview" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    blogId, title, label, content, updateTime, userId, status
+    blogId, title, label, content, updateTime, userId, status, summary, preview
   </sql>
   <select id="selectByExample" parameterType="cn.blog.bean.BlogExample" resultMap="BaseResultMap">
     select
@@ -104,10 +106,10 @@
   <insert id="insert" parameterType="cn.blog.bean.Blog">
     insert into blog (blogId, title, label, 
       content, updateTime, userId, 
-      status)
+      status, summary, preview)
     values (#{blogid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{updatetime,jdbcType=DATE}, #{userid,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER})
+      #{status,jdbcType=INTEGER}, #{summary,jdbcType=VARCHAR}, #{preview,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.blog.bean.Blog">
     insert into blog
@@ -252,7 +254,9 @@
     label=#{label},
     content=#{content},
     updateTime=#{updatetime},
-    userId=#{userid}
+    userId=#{userid},
+    summary=#{summary},
+    preview=#{preview}
     WHERE blogId=#{blogid}
   </update>
   <select id="selectBlogsByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">

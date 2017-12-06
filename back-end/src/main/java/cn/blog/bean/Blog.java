@@ -17,6 +17,10 @@ public class Blog {
 
     private Integer status;
 
+    private String summary;
+
+    private String preview;
+
     public Blog() {
     }
 
@@ -26,6 +30,16 @@ public class Blog {
         this.content = content;
         this.updatetime = updatetime;
         this.userid = userid;
+    }
+
+    public Blog(String title, String label, String content, Date updatetime, Integer userid, String summary, String preview) {
+        this.title = title;
+        this.label = label;
+        this.content = content;
+        this.updatetime = updatetime;
+        this.userid = userid;
+        this.summary = summary;
+        this.preview = preview;
     }
 
     public Blog(String title, String label, String content, Date updatetime, Integer userid, Integer status) {
@@ -42,6 +56,22 @@ public class Blog {
         this.label = label;
         this.content = content;
         this.updatetime = updatetime;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getPreview() {
+        return preview;
+    }
+
+    public void setPreview(String preview) {
+        this.preview = preview;
     }
 
     public Integer getBlogid() {

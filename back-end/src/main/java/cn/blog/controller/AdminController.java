@@ -127,7 +127,9 @@ public class AdminController {
             @ApiImplicitParam(name = "label",value = "标签分类",required = true,dataType = "String"),
             @ApiImplicitParam(name = "content",value = "文章内容",required = true,dataType = "String"),
             @ApiImplicitParam(name = "userid",value = "用户Id",required = true,dataType = "Integer"),
-            @ApiImplicitParam(name = "blogid",value = "博客Id",required = true,dataType = "Integer")
+            @ApiImplicitParam(name = "blogid",value = "博客Id",required = true,dataType = "Integer"),
+            @ApiImplicitParam(name = "summary",value = "摘要",required = true,dataType = "String"),
+            @ApiImplicitParam(name = "preview",value = "预览图",required = true,dataType = "String")
     })
     @PutMapping(value = "blog")
     public R1 updateBlog(@RequestBody Blog blog){
