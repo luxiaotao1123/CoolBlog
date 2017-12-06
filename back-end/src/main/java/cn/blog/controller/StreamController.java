@@ -35,8 +35,8 @@ public class StreamController {
         logger.info(fileName+"文件已上传");
         String fileSuffix = fileName.substring(fileName.lastIndexOf("."));      //获取文件后缀名
         String newfileName = datefile+fileSuffix;
-        String filePath = "C:\\Users\\Administrator\\Desktop\\getFile\\";        //文件存储到本地的路径
-        //String filePath = "//picture/";        //文件存储到本地的路径
+        //String filePath = "C:\\Users\\Administrator\\Desktop\\getFile\\";        //文件存储到本地的路径
+        String filePath = "//picture/";        //文件存储到本地的路径
         File getFile = new File(filePath+newfileName);     //本地文件名加路径的File对象
         if (getFile.getParentFile().exists()){
             myfile.transferTo(getFile);     //把内存文件写到磁盘里

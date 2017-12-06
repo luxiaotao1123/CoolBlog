@@ -35,7 +35,6 @@ public class MyNioServer {
             while (iterator.hasNext()){             //使用迭代器遍历集合
                 SelectionKey key = (SelectionKey) iterator.next();       //得到集合中的一个key实例
                 iterator.remove();          //拿到当前key实例之后记得在迭代器中将这个元素删除，非常重要，否则会出错
-
                 if (key.isAcceptable()){         //判断当前key所代表的channel是否在Acceptable状态，如果是就进行接收
                     doAccept(key);
                 }else if (key.isReadable()){
@@ -51,18 +50,10 @@ public class MyNioServer {
 
     public void doAccept(SelectionKey key) throws IOException {
         ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
-        while (true){
             System.out.println("循环监听");
-            try {
-                SocketChannel clientChannel = serverChannel.accept();
-                clientChannel.configureBlocking(true);
-                clientChannel.register(key.selector(),SelectionKey.OP_READ);
-            }catch (IllegalBlockingModeException e){
-                System.out.println("IllegalBlockingModeException异常，go on");
-            }catch (NullPointerException e){
-                System.out.println("NullPointerException异常，go on");
-            }
-        }
+            SocketChannel clientChannel = serverChannel.accept();
+            clientChannel.configureBlocking(false);
+            clientChannel.register(key.selector(),SelectionKey.OP_READ);
 
     }
 
