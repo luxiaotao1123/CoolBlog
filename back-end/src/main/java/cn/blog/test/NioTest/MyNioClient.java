@@ -31,7 +31,7 @@ public class MyNioClient {
                 if (key.isConnectable()){
                     doConnect(key);
                 }else if (key.isReadable()){
-
+                    doRead(key);
                 }
             }
         }
@@ -53,6 +53,8 @@ public class MyNioClient {
         byte[] data = byteBuffer.array();
         String msg = new String(data).trim();
         System.out.println("服务端发送消息："+msg);
+        clientChannel.close();
+        key.selector().close();
     }
 
     public static void main(String[] args) throws IOException {
