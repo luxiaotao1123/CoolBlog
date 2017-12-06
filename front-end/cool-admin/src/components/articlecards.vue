@@ -3,7 +3,7 @@
       <div class="article-card" v-for="(item, key) in list" :key="item.key">
             <div class="card-box">
                <div class="blog-img">
-                   <img src="http://hbfile.b0.upaiyun.com/img/home/banner/9165d863f69677e01f154456f4203d40fc8ce3dc113f4e" >
+                   <img :src='item.preview' > 
                </div>
                <div class="article-title">
                    <div class="title-box">
@@ -13,9 +13,21 @@
                </div>
                <div style="clear:both"></div>
                <div class="article-abstract">
-                   <div>abstract</div>
+                   <div>{{item.summary}}</div>
                </div>
-               <div></div>
+               <div class="article-info">
+                   <div class="face" v-if="item.userid==5">
+                       <img width="50" height="50" src="https://tvax3.sinaimg.cn/crop.0.19.670.670.180/006TYhdCly8fi3z75745fj30j60j6aeb.jpg" alt="Tom">
+                       <span style="padding-left:20px">Tom</span>
+                   </div>
+                   <div class="face" v-if="item.userid==4">
+                       <img width="50" height="50" src="https://sfault-avatar.b0.upaiyun.com/284/938/2849383166-59fbc62406de4_huge256" alt="大叔一枝花">
+                       <span style="padding-left:20px">Vincent</span>
+                   </div>
+                   <div class="tags">
+                       <Tag  type="border" checkable color="blue">{{item.label}}</Tag>
+                   </div>
+               </div>
             </div>
         </div>
 </div>
@@ -56,14 +68,15 @@ export default {
 .card-box{
     width: 100%;
     position: relative;
+    overflow: hidden;
 }
 .article-card .blog-img>img{
-    width: 100%;
+    width:100% ;
     height: 326px;
 }
 .article-title{
     position: absolute;    
-    bottom: 58px;
+   top:230px;
     right: 0px;
     left: 0px;
     padding-top: 8px;
@@ -90,7 +103,45 @@ font-size: 24px;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.87);
     background-color: rgb(255, 255, 255);
-    
+    border-bottom: 1px solid #eef2f8
+}
+.article-info{
+     background-color: rgb(255, 255, 255);
+     padding: 10px;
+}
+.article-info .face{
+    width: 160px;
+    float: left;
+    height: 65px;
+}
+.article-info .face>img{
+    border-radius: 50%;
+    /* border: 1px solid #adadad */
+}
+.tags{
+    float: right ;
+    padding-top: 20px;
+    padding-right: 10px
+}
+@media screen and (max-width: 1024px)  {
+    .article-cards{
+        width: 100%;
+    }
+    .article-card{
+        width: 100%;
+        overflow: hidden;   
+    }
+   
+}
+@media screen and (max-width: 420px)  {
+ .article-card .blog-img>img{
+  height: 230px;
+transition: all 1s ease;
+    }
+    .article-title{
+            top: 133px;
+            transition: all 1s ease;
+    }
 }
 </style>
 

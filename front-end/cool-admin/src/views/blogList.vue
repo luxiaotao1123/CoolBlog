@@ -32,7 +32,7 @@ export default {
         },
         {
           title: '摘要',
-          key: 'abstract'
+          key: 'summary'
         },
         {
           title: '更新时间',
@@ -81,7 +81,7 @@ export default {
         pageData
       })
       .then(function (responce) {
-        // console.log(responce.data)
+        console.log(responce.data)
         // 分页
         that.pageData.pageSize = Number(responce.data.blog.pageSize)
         that.pageData.pageNum = Number(responce.data.blog.pageNum)
@@ -94,7 +94,7 @@ export default {
             id: item.blogid,
             title: item.title,
             label: item.label,
-            abstract: item.content.substring(4, 10),
+            summary: item.summary,
             updatetime: moment(item.updatetime).format('YYYY-MM-DD')
           })
         })
@@ -131,7 +131,7 @@ export default {
             id: item.blogid,
             title: item.title,
             label: item.label,
-            abstract: item.content.substring(4, 10),
+            abstract: item.summary,
             updatetime: moment(item.updatetime).format('YYYY-MM-DD')
           })
         })
@@ -176,6 +176,8 @@ export default {
                 that.$Message.info('错误')
               }
               location.reload()
+              // that.$router.push('bloglist')
+              // router.go(1)
             })
             // .catch(function (error) {
             //   console.log(error)

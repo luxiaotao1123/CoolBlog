@@ -8,6 +8,13 @@
           </Col>
        </Row>
     </FormItem>
+    <FormItem label="Summary:" prop="summary">
+       <Row>
+         <Col  :xs="20" :sm="16" :md="12" :lg="8">
+            <Input type="textarea"  :rows="4" v-model="blogFormItem.summary"></Input>
+          </Col>
+       </Row>
+    </FormItem>
     <FormItem label="Label" prop="label">
       <Row>
            <Col  :xs="20" :sm="16" :md="12" :lg="8">
@@ -15,8 +22,17 @@
                         <Option value="js">Javascript</Option>
                         <Option value="java">Java</Option>
                         <Option value="Python">Python</Option>
+                        <Option value="Actress">霓虹女星</Option>
               </Select>
        </Col>
+      </Row>
+    </FormItem>
+    <FormItem label="Preview" prop="preview">
+       <Row>
+           <Col  :xs="20" :sm="16" :md="12" :lg="8">
+                <Button type="ghost" icon="ios-cloud-upload-outline" @click="upload">Upload files</Button>
+                <div v-if="blogFormItem.preview !== null">Upload file: {{blogFormItem.preview}} </div>
+        </Col>
       </Row>
     </FormItem>
     <FormItem label="Content" prop="content">
@@ -39,6 +55,7 @@
             <Button type="ghost" @click="handleReset('blogFormItem')" style="margin-left: 8px">Reset</Button>
     </FormItem>
    </Form>
+   <input type="file" multiple accept="image/jpg,image/jpeg,image/png,image/gif" id='secondId' style="display: none"  @change="uploadPre">
    <form  method="post"  enctype="multipart/form-data" id="uploadFormMulti" >
        <input id="uniqueId" type="file" name="" multiple accept="image/jpg,image/jpeg,image/png,image/gif"  @change="uploadImg" style="display: none">
        <!--style="display: none"-->
@@ -64,7 +81,9 @@ export default {
       blogFormItem: {
         title: '',
         label: '',
-        content: ''
+        content: '',
+        summary: '',
+        preview: ''
       },
       ruleValidate: {
         title: [
@@ -75,6 +94,12 @@ export default {
         ],
         content: [
             { required: true, message: '别忘记写文章啊！', trigger: 'blur' }
+        ],
+        summary: [
+            { required: true, message: '别忘记写摘要啊！', trigger: 'blur' }
+        ],
+        preview: [
+            { required: true, message: '别忘记发预览图啊！', trigger: 'blur' }
         ]
       }
     }
@@ -119,6 +144,7 @@ export default {
             if (response.status === 200 && response.data.code === 201) {
               that.$Message.success('提交成功')
               that.$forceUpdate()
+              that.$router.replace({ path: 'bloglist' })
             } else {
               that.$Message.error('提交失败了! ')
             }
@@ -140,10 +166,39 @@ export default {
       // let myform = document.getElementById('uploadFormMulti')
       let formData = new FormData()
       formData.append('myfile', files)
-      console.log(files)
-      console.log(formData)
       service({
         url: '/api/admin/file',
+        method: 'post',
+        cache: false,
+        // contentType: false,
+        processData: false,
+        data: formData
+      })
+      .then(function (response) {
+        if (response.status === 200 || response.data.code === 200) {
+          console.log(response.data)
+          // that.addRange = that.$refs.myQuillEditor.getSelection()
+          let value = response.data.msg
+          value = value.indexOf('http') !== -1 ? value : 'http://' + value
+          console.log(value)
+          that.$refs.myTextEditor.quill.insertEmbed(that.$refs.myTextEditor.quill.getSelection().index, 'image', value)
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    },
+    upload () {
+      let inp = document.getElementById('secondId')
+      inp.click()
+    },
+    uploadPre (e) {
+      let files = e.target.files[0]
+      let that = this
+      let formData = new FormData()
+      formData.append('blogpreview', files)
+      service({
+        url: '/api/admin/blog/preview',
         method: 'post',
         cache: false,
         // contentType: false,
@@ -156,8 +211,8 @@ export default {
           // that.addRange = that.$refs.myQuillEditor.getSelection()
           let value = response.data.msg
           value = value.indexOf('http') !== -1 ? value : 'http://' + value
-          // console.log(value)
-          that.$refs.myTextEditor.quill.insertEmbed(that.$refs.myTextEditor.quill.getSelection().index, 'image', value)
+          console.log(value)
+          that.blogFormItem.preview = value
         }
       })
       .catch(function (error) {
