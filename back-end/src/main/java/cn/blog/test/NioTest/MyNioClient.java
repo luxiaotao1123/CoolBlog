@@ -30,6 +30,8 @@ public class MyNioClient {
                 iterator.remove();
                 if (key.isConnectable()){
                     doConnect(key);
+                }else if (key.isReadable()){
+
                 }
             }
         }
@@ -43,6 +45,14 @@ public class MyNioClient {
         clientChannel.configureBlocking(false);
         clientChannel.write(byteBuffer.wrap(new String("你好服务端！").getBytes()));
         clientChannel.register(key.selector(),SelectionKey.OP_READ);
+    }
+
+    public void doRead(SelectionKey key) throws IOException {
+        SocketChannel clientChannel = (SocketChannel) key.channel();
+        clientChannel.read(byteBuffer);
+        byte[] data = byteBuffer.array();
+        String msg = new String(data).trim();
+        System.out.println("服务端发送消息："+msg);
     }
 
     public static void main(String[] args) throws IOException {
