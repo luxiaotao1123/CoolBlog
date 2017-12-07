@@ -4,7 +4,7 @@
         <div class="post-meta">
             <time>{{blogInfo.updatetime}}</time>
         </div>
-        <div class="post-content" id='post-content' >
+        <div class="post-content" id='post-content'>
             <div class='main-content' v-html="blogInfo.content"></div>
         </div>
     </div>
@@ -14,7 +14,11 @@ import service from '../utils/service.js'
 export default {
   data () {
     return {
-      blogInfo: {}
+      blogInfo: {
+        title: '',
+        updatetime: '',
+        content: ''
+      }
     }
   },
   methods: {
@@ -36,15 +40,18 @@ export default {
       })
     }
   },
-  created () {
+  mounted () {
     this.initblog()
   },
   watch: {
     '$route': 'initblog'
+  },
+  beforeMount () {
+    this.blogInfo = ''
   }
 }
 </script>
-<style scoped>
+<style >
 .post-header{
     display: block;
     max-width: 960px;
@@ -67,6 +74,9 @@ line-height: 1.5em;
     margin-top: 20px;
     font-weight: 400;
     overflow: hidden;
+}
+#main-content p img{
+    max-width: 80% !important;
 }
 .main-content{
      display: block;

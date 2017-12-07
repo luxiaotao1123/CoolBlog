@@ -2,7 +2,7 @@
 <div>
   <article-card :list='list.list'></article-card>
   <div style="margin-top:15px;margin-right:30px;" align="right">
-    <Page :current="list.pageNum" :total="list.total" simple  @on-change ='changePage'></Page>
+    <Page :current="list.pageNum" :total="list.total"  @on-change ='changePage'></Page>
   </div>
 </div>
 </template>
@@ -62,6 +62,9 @@ export default {
   },
   mounted () {
     this.initBlogs()
+  },
+  watch: {
+    '$rount': 'initBlogs'
   }
 }
 </script>
