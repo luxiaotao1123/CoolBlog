@@ -1,11 +1,13 @@
-# Cool-Blog
-startup project:
+## Cool-Blog
+# startup project:
+
+back-end:
 ```
 cd back-end
 mvn spring-boot:run
 ```
 
-Need to install:
+# Need to install:
 ```
 nginx
 mysql 5.1+
