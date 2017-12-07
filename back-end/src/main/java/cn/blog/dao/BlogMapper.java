@@ -35,4 +35,10 @@ public interface BlogMapper {
     List<Blog> selectBlogsByLabel(String label);
 
     int deleteMoreBlogs(Integer[] blogIds);
+
+    int updateStatus(Integer[] blogIds);
+
+    List<Blog> getDustbinBlogs();
+
+    int deleteDustbinBlogs(Integer[] blogIds);
 }

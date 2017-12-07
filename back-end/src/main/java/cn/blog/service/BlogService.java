@@ -25,4 +25,10 @@ public interface BlogService {
 
     public void deleteMoreBlogs(Integer[] blogIds);
 
+    public void updateStatus(Integer[] blogIds);
+
+    public List<Blog> getDustbin();
+
+    public void deleteDustbinBlogs(Integer[] blogIds);
+
 }

@@ -61,4 +61,16 @@ public class test2 {
         List<Blog> list = blogMapper.selectBlogsByLabel("Python");
         System.out.println(list.size());
     }
+
+    @Test
+    public void Test6(){
+        Integer[] blogIds = {56};
+        blogMapper.updateStatus(blogIds);
+    }
+
+    @Test
+    public void Test7(){
+        List<Blog> blogList = blogMapper.getDustbinBlogs();
+        System.out.println(blogList.get(0).getBlogid());
+    }
 }

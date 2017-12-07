@@ -59,5 +59,19 @@ public class BlogServiceImpl implements BlogService {
         blogMapper.deleteMoreBlogs(blogIds);
     }
 
+    @Override
+    public void updateStatus(Integer[] blogIds) {
+        blogMapper.updateStatus(blogIds);
+    }
+
+    @Override
+    public List<Blog> getDustbin() {
+        return blogMapper.getDustbinBlogs();
+    }
+
+    @Override
+    public void deleteDustbinBlogs(Integer[] blogIds) {
+        blogMapper.deleteDustbinBlogs(blogIds);
+    }
 
 }

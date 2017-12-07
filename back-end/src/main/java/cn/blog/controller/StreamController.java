@@ -46,7 +46,7 @@ public class StreamController {
     }
 
     @ApiOperation(value = "上传博客预览图API",notes = "")
-    @ApiImplicitParam(name = "myfile",value = "上传的博客预览图",required = true,dataType = "multipart/form-data")
+    @ApiImplicitParam(name = "blogpreview",value = "上传的博客预览图",required = true,dataType = "multipart/form-data")
     @PostMapping("blog/preview")
     public R1 previewUpload(@RequestParam("blogpreview") MultipartFile blogpreview) throws IOException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");

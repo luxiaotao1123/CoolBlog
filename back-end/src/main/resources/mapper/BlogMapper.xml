@@ -274,4 +274,29 @@
       </foreach>
     </where>
   </delete>
+  <update id="updateStatus" parameterType="Integer[]">
+    UPDATE blog
+    SET status=0
+    <where>
+      blogId
+      <foreach collection="array" item="ids" open="in (" close=")" separator=",">
+        #{ids}
+      </foreach>
+    </where>
+  </update>
+  <select id="getDustbinBlogs" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM blog
+    WHERE status=0
+  </select>
+  <delete id="deleteDustbinBlogs" parameterType="Integer[]">
+    DELETE FROM blog
+    <where>
+      blogId
+      <foreach collection="array" item="ids" open="in (" close=")" separator=",">
+        #{ids}
+      </foreach>
+    </where>
+  </delete>
 </mapper>
