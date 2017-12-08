@@ -11,7 +11,7 @@ Vue.use(Router)
 // 路由懒加载
 const Login = resolve => {
   require.ensure(['../views/Login.vue'], () => {
-    resolve(require('../views/Login.vue'))
+    resolve(require('../views/login.vue'))
   })
 }
 const Blogs = resolve => {
