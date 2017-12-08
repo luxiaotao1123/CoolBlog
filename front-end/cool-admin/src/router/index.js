@@ -10,7 +10,7 @@ Vue.use(Router)
 
 // 路由懒加载
 const Login = resolve => {
-  require.ensure(['../views/Login.vue'], () => {
+  require.ensure(['../views/login.vue'], () => {
     resolve(require('../views/login.vue'))
   })
 }

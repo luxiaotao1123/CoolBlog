@@ -1,9 +1,7 @@
 <template>
   <div class="app-container">
     <section class="router-view-box" :style="{ height: screenHeight }">
-            <keep-alive>
                 <router-view class="router-view"></router-view>
-            </keep-alive>
     </section>
   </div>
 </template>

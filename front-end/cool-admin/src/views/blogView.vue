@@ -78,9 +78,15 @@ line-height: 1.5em;
 
 .main-content{
      display: block;
+     /* flex-direction:row; */
+/* justify-content:center; */
+/* align-items:center; */
+width: 90%;
     max-width: 960px;
-    width: 960px;
+    min-width: 280px;
+    /* width: 100px; */
     margin: 0 auto;
+    position: relative;
     padding-right: 20px;
     padding-left: 20px;
     overflow: hidden;
@@ -111,8 +117,9 @@ font-size: 17px
 }
 </style>
 <style>
-#main-content p img{
+.main-content p img{
     max-width: 80% !important;
+    margin-left: 10%
 }
 </style>
 
