@@ -41,4 +41,6 @@ public interface BlogMapper {
     List<Blog> getDustbinBlogs();
 
     int deleteDustbinBlogs(Integer[] blogIds);
+
+    List<Blog> getAllBlog();
 }
