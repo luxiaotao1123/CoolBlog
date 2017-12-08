@@ -299,4 +299,13 @@
       </foreach>
     </where>
   </delete>
+  <select id="getAllBlog" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from blog
+    WHERE status=1
+  </select>
 </mapper>

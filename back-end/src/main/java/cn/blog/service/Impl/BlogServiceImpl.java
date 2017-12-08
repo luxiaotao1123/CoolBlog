@@ -21,7 +21,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> getALLBlog() {
-        return blogMapper.selectByExample(new BlogExample());
+        return blogMapper.getAllBlog();
     }
 
     @Override
