@@ -51,7 +51,7 @@ export default {
   }
 }
 </script>
-<style >
+<style scoped >
 .post-header{
     display: block;
     max-width: 960px;
@@ -75,13 +75,18 @@ line-height: 1.5em;
     font-weight: 400;
     overflow: hidden;
 }
-#main-content p img{
-    max-width: 80% !important;
-}
+
 .main-content{
      display: block;
+     /* flex-direction:row; */
+/* justify-content:center; */
+/* align-items:center; */
+width: 90%;
     max-width: 960px;
+    min-width: 280px;
+    /* width: 100px; */
     margin: 0 auto;
+    position: relative;
     padding-right: 20px;
     padding-left: 20px;
     overflow: hidden;
@@ -109,6 +114,12 @@ font-size: 17px
     h1{
         font-size: 25px;
     }
+}
+</style>
+<style>
+.main-content p img{
+    max-width: 80% !important;
+    margin-left: 10%
 }
 </style>
 
