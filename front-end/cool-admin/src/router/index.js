@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/index.js'
-// import HelloWorld from '@/components/HelloWorld'
-// import Login from '@/views/login'
-// import CommonLayout from '../layout/admin'
-// import blogEdit from '../views/blogEdit'
+import iView from 'iview'
+Vue.use(iView)
 
 Vue.use(Router)
 
@@ -44,6 +42,15 @@ const router = new Router({
             require(['../views/blogView'], resolve)
           },
           name: 'blog',
+          menu: false,
+          meta: {}
+        },
+        {
+          path: '/author/:id',
+          component: function (resolve) {
+            require(['../views/authorInfo'], resolve)
+          },
+          name: 'author',
           menu: false,
           meta: {}
         }
@@ -127,6 +134,10 @@ router.beforeEach((to, from, next) => {
     next()// 如果无需token,那么随它去吧
     // window.reload()
   }
+  iView.LoadingBar.start()
+})
+router.afterEach(route => {
+  iView.LoadingBar.finish()
 })
 
 export default router
