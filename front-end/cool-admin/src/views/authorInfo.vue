@@ -1,7 +1,7 @@
 <template>
   <div class="authorInfo-box">
    <Card style="width:320px;  position: absolute; top: 40%;transform: translateY(-50%);left:40%" class="info-r">
-        <div style="text-align:center" >
+        <div style="text-align:center" v-if="id == 5" >
             <img src="https://tvax3.sinaimg.cn/crop.0.19.670.670.180/006TYhdCly8fi3z75745fj30j60j6aeb.jpg" class="about-sel">
             <h3>Tom</h3>
             <p>Every thing changed but Tom </p>
@@ -12,6 +12,21 @@
                     </li>
                     <li>
                         <a href="https://twitter.com/calvino_twi"><Icon type="social-twitter"></Icon></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center" v-if="id == 4" >
+            <img src="https://sfault-avatar.b0.upaiyun.com/284/938/2849383166-59fbc62406de4_huge256" class="about-sel">
+            <h3>Vincent</h3>
+            <p>大叔一枝花</p>
+            <div class="info-social">
+                <ul class="social-ul">
+                    <li>
+                        <a href="https://github.com/luxiaotao1123"  target="_blank"><Icon type="social-github"></Icon></a>
+                    </li>
+                    <li>
+                        <a href="#"><Icon type="social-twitter"></Icon></a>
                     </li>
                 </ul>
             </div>

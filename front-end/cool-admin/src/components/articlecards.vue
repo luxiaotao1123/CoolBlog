@@ -16,11 +16,11 @@
                    <div>{{item.summary}}</div>
                </div>
                <div class="article-info">
-                   <div class="face" v-if="item.userid==5">
+                   <div class="face" v-if="item.userid==5" @click="go(item.userid)">
                        <img width="50" height="50" src="https://tvax3.sinaimg.cn/crop.0.19.670.670.180/006TYhdCly8fi3z75745fj30j60j6aeb.jpg" alt="Tom">
                        <span style="padding-left:20px">Tom</span>
                    </div>
-                   <div class="face" v-if="item.userid==4">
+                   <div class="face" v-if="item.userid==4" @click="go(item.userid)">
                        <img width="50" height="50" src="https://sfault-avatar.b0.upaiyun.com/284/938/2849383166-59fbc62406de4_huge256" alt="大叔一枝花">
                        <span style="padding-left:20px">Vincent</span>
                    </div>
@@ -37,7 +37,12 @@ export default {
   data () {
     return {}
   },
-  props: ['list']
+  props: ['list'],
+  methods: {
+    go (id) {
+      this.$router.push({name: 'author', params: {id: id}})
+    }
+  }
 }
 </script>
 <style scoped>
@@ -113,6 +118,7 @@ font-size: 24px;
     width: 160px;
     float: left;
     height: 65px;
+    cursor: pointer;
 }
 .article-info .face>img{
     border-radius: 50%;
