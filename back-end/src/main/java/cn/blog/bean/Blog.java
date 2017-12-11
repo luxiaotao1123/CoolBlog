@@ -21,6 +21,12 @@ public class Blog {
 
     private String preview;
 
+    public Blog(Integer blogid, String title, Date updatetime) {
+        this.blogid = blogid;
+        this.title = title;
+        this.updatetime = updatetime;
+    }
+
     public Blog() {
     }
 

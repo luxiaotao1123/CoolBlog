@@ -74,4 +74,14 @@ public class BlogServiceImpl implements BlogService {
         blogMapper.deleteDustbinBlogs(blogIds);
     }
 
+    @Override
+    public List<String> orderByMonth() {
+        return blogMapper.queryByMonth();
+    }
+
+    @Override
+    public List<Blog> queryArchives() {
+        return blogMapper.selectArchives();
+    }
+
 }

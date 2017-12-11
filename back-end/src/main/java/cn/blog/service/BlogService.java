@@ -31,4 +31,7 @@ public interface BlogService {
 
     public void deleteDustbinBlogs(Integer[] blogIds);
 
+    public List<String> orderByMonth();
+
+    public List<Blog> queryArchives();
 }

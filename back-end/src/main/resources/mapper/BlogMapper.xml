@@ -12,6 +12,11 @@
     <result column="summary" jdbcType="VARCHAR" property="summary" />
     <result column="preview" jdbcType="VARCHAR" property="preview" />
   </resultMap>
+  <resultMap id="archivesResultMap" type="cn.blog.bean.Blog">
+    <id column="blogId" jdbcType="INTEGER" property="blogid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="updateTime" jdbcType="DATE" property="updatetime" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -263,7 +268,7 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM blog
-    WHERE label like #{label}
+    WHERE label like #{label} AND status=1
   </select>
   <delete id="deleteMoreBlogs" parameterType="Integer[]">
     DELETE FROM blog
@@ -307,5 +312,11 @@
     <include refid="Base_Column_List" />
     from blog
     WHERE status=1
+  </select>
+  <select id="queryByMonth" resultType="java.lang.String">
+    SELECT DISTINCT LEFT(updateTime,7) FROM blog WHERE STATUS=1 ORDER BY updateTime DESC
+  </select>
+  <select id="selectArchives" resultMap="archivesResultMap">
+    SELECT blogId,title,updateTime FROM blog WHERE STATUS=1 ORDER BY updateTime DESC
   </select>
 </mapper>

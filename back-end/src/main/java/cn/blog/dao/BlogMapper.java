@@ -43,4 +43,8 @@ public interface BlogMapper {
     int deleteDustbinBlogs(Integer[] blogIds);
 
     List<Blog> getAllBlog();
+
+    List<String> queryByMonth();
+
+    List<Blog> selectArchives();
 }

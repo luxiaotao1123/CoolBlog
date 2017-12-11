@@ -6,6 +6,7 @@ import cn.blog.bean.HandleExample;
 import cn.blog.dao.BlogMapper;
 import cn.blog.dao.HandleMapper;
 import cn.blog.dao.TokenMapper;
+import cn.blog.service.BlogService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -26,6 +27,9 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class test2 {
+
+    @Autowired
+    private BlogService blogService;
 
     @Autowired
     private TokenMapper tokenMapper;
@@ -115,5 +119,17 @@ public class test2 {
     private void testRoles(){
         Assert.assertEquals(true,true);
         System.out.println("admin");
+    }
+
+    @Test
+    public void test8(){
+        List<String> list = blogService.orderByMonth();
+        List<Blog> blogList = blogService.queryArchives();
+        for (String month:list){
+            System.out.println(month);
+        }
+        /*for (Blog blog:blogList){
+            System.out.println(blog.getTitle());
+        }*/
     }
 }

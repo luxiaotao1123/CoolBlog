@@ -51,4 +51,16 @@ public class BlogController {
         Blog blog = blogService.getOneBlog(blogId);
         return R1.add("getBlog",blog);
     }
+
+    @ApiOperation(value = "遍历日期，以月份为单位",notes = "")
+    @GetMapping(value = "months")
+    public R1 orderByMonth() {
+        return R1.add("Monthss", blogService.orderByMonth());
+    }
+
+    @ApiOperation(value = "归档",notes = "")
+    @GetMapping(value = "archives")
+    public R1 getArchives() {
+        return R1.add("archives", blogService.queryArchives());
+    }
 }
