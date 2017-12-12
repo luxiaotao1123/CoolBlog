@@ -2,8 +2,11 @@ package cn.blog.shiro;
 
 
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.util.LinkedHashMap;
@@ -34,44 +37,37 @@ public class ShiroConfig {
     }
 
     /** shiro filter 工厂类
-     * 1.定义ShiroFilterFactoryBean
-     * 2.设置SecurityManager
-     * 3.配置拦截器
-     * 4.返回定义ShiroFilterFactoryBean
      */
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
-        //1。定义ShiroFilterFactoryBean
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-
-        //2.注册securityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-
-        //3.1拦截器
-        //LinkHashMap是有序的，shiro会根据添加的顺序进行拦截,在上面的优先级比较大
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        //配置拦截器
-        //anon，所有的url都可以匿名访问
-        //authc：所有url都必须认证通过才可以访问
-        //user，配置记住我或者认证通过才能访问
-        //logout，退出登录
-        filterChainDefinitionMap.put("/**","anon");     //运行匿名访问
-        filterChainDefinitionMap.put("/logout","logout");   //登出
-        //filterChainDefinitionMap.put("/**","authc");        //必须认证后才能访问,这里写系统管理页面
+        filterChainDefinitionMap.put("/logout","logout");
+        filterChainDefinitionMap.put("/myajaxLogin","anon");
+        filterChainDefinitionMap.put("/**","authc");
+
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
-        //3.2配置登录和登录成功之后的url
-        //设置登录界面，如果不设置为寻找web根目录下的文件
-        shiroFilterFactoryBean.setLoginUrl("/login.html");
-        //设置登录成功后要跳转的连接
-        //shiroFilterFactoryBean.setSuccessUrl("/testSuccess");
-        //设置登录未成功，也可以说无权限界面
-        //shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/swagger-ui.html");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/");
-        //4.返回对象
-        System.out.println("shiro拦截工厂注入类成功");
+        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setSuccessUrl("/success");
+
         return shiroFilterFactoryBean;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
+        daap.setProxyTargetClass(true);
+        return daap;
+    }
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
+        aasa.setSecurityManager(securityManager);
+        return aasa;
     }
 }

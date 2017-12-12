@@ -7,7 +7,7 @@ import java.util.Map;
 public class R1 extends HashMap<String,Object>{
     //构造
     public R1(){
-        put("code",200);
+        put("code",200);        //初始值
     }
     //错误
     public static R1 error(int code, String msg){

@@ -30,4 +30,6 @@ public interface UserMapper {
 
     //自己添加
     User selectByNameAndPassword(User user);
+
+    User selectByName(String name);
 }
