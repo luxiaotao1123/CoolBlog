@@ -1,6 +1,7 @@
 <template>
   <div class="authorInfo-box">
-   <Card style="width:320px;  position: absolute; top: 40%;transform: translateY(-50%);left:40%" class="info-r">
+   <Card style="  " class="info-r">
+       <transition name="component-fade" mode="out-in">
         <div style="text-align:center" v-if="id == 5" >
             <img src="https://tvax3.sinaimg.cn/crop.0.19.670.670.180/006TYhdCly8fi3z75745fj30j60j6aeb.jpg" class="about-sel">
             <h3>Tom</h3>
@@ -31,6 +32,7 @@
                 </ul>
             </div>
         </div>
+         </transition>
     </Card>
   </div>
 </template>
@@ -50,6 +52,15 @@ export default {
 </script>
 
 <style scoped>
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: all 1s ease;
+ 
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for below version 2.1.8 */ {
+    height :0px;
+  opacity: 0;
+}
 .authorInfo-box{
     background-image: url(/static/images/pbear.jpg);
     /* background-attachment: fixed; */
@@ -61,6 +72,7 @@ export default {
 }
 .info-r{
     transition: all 1s ease;
+    position: absolute; top: 40%;transform: translateY(-50%);left:40%;width:320px;
 }
 .authorInfo-box a{
         color: #333;
@@ -95,5 +107,23 @@ export default {
 .social-ul li a{
         width: 26px;
     height: 26px;
+}
+@media screen and (max-width: 1024px)  {
+    .authorInfo-box{
+        width:100%;
+        min-width: 800px;
+    }
+}
+@media screen and (max-width: 420px){
+     .authorInfo-box{
+        width:100%;
+        min-width: 300px;
+        position: relative;
+    }
+    .info-r{
+ width: 280px;
+ left: 3%;
+ top: 30%
+    }
 }
 </style>
