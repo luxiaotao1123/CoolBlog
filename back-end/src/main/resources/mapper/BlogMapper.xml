@@ -311,7 +311,7 @@
     </if>
     <include refid="Base_Column_List" />
     from blog
-    WHERE status=1
+    WHERE status=1 ORDER BY updateTime DESC
   </select>
   <select id="queryByMonth" resultType="java.lang.String">
     SELECT DISTINCT LEFT(updateTime,7) FROM blog WHERE STATUS=1 ORDER BY updateTime DESC
