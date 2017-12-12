@@ -122,4 +122,29 @@ font-size: 17px
     margin-left: 10%
 }
 </style>
+<style>
+ pre{
+    padding: 1em;
+    border: none;
+    overflow: auto;
+    line-height: 1.45;
+    max-height: 35em;
+    position: relative;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    color: #333;
+    background: #e1e1e1;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42858;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+</style>
+
 

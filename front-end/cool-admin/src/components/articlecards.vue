@@ -3,7 +3,9 @@
       <div class="article-card" v-for="(item, key) in list" :key="item.key">
             <div class="card-box">
                <div class="blog-img">
+                   <router-link :to="{ name: 'blog', params: { id: item.blogid }}">
                    <img :src='item.preview' > 
+                   </router-link>
                </div>
                <div class="article-title">
                    <div class="title-box">
@@ -75,7 +77,7 @@ export default {
     position: relative;
     overflow: hidden;
 }
-.article-card .blog-img>img{
+.article-card .blog-img a>img{
     width:100% ;
     height: 326px;
 }

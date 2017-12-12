@@ -1,7 +1,7 @@
 <template>
 <div>
   <article-card :list='list.list'></article-card>
-  <div style="margin-top:15px;margin-right:30px;" align="right">
+  <div style="margin-top:15px;margin-right:30px;" >
     <Page :current="list.pageNum" :total="list.total"  @on-change ='changePage'></Page>
   </div>
 </div>
