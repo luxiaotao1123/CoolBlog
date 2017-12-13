@@ -18,6 +18,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+    <modules>
+        <module>eureka-server</module>
+    </modules>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -59,12 +63,6 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
             <version>1.5.8.RELEASE</version>
         </dependency>
-
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>1.5.8.RELEASE</version>
-        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
