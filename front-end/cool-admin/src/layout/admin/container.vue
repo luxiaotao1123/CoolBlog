@@ -47,7 +47,7 @@
   left: 0px;
   top: 0px;
   /* background-color: #2d3035; */
-  background-image: url(/src/statics/images/manubg.jpg);
+  background-image: url(/static/images/manubg.jpg);
   background-repeat:no-repeat;
   
 }
