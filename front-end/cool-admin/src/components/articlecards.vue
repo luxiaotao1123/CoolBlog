@@ -53,6 +53,7 @@ export default {
    justify-content:center;
    flex-direction:column;
    width: 980px;
+   
 }
 .article-card{
 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -60,14 +61,14 @@ export default {
     background-color: rgb(255, 255, 255);
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
     border-radius: 2px;
     z-index: 1;
    max-width: 960px;
     display: flex;
  justify-content:center;
- margin: 8px
+ margin: 8px;
+ margin-bottom: 47.5px
 }
 .article-card:hover{
         box-shadow: 0 3px 10px rgba(0,0,0,.156863),0 3px 10px rgba(0,0,0,.227451)!important;

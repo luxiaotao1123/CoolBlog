@@ -54,10 +54,15 @@ export default {
 <style scoped >
 .post-header{
     display: block;
-    max-width: 960px;
+    max-width: 800px;
     margin: 0 auto;
     padding-right: 20px;
-    padding-left: 20px
+    padding-left: 20px;
+    background:#fff;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 微软雅黑;
+    width: 100%;
 }
 .post-meta{
 line-height: 1.5em;
@@ -69,7 +74,7 @@ line-height: 1.5em;
 .post-content{
    text-rendering: optimizelegibility;
     letter-spacing: -.3px;
-    font-family: Merriweather,serif;
+    /* font-family: Merriweather,serif; */
     color: #5d686f;
     margin-top: 20px;
     font-weight: 400;
@@ -81,8 +86,8 @@ line-height: 1.5em;
      /* flex-direction:row; */
 /* justify-content:center; */
 /* align-items:center; */
-width: 90%;
-    max-width: 960px;
+   width: 90%;
+    /* max-width: 960px; */
     min-width: 280px;
     /* width: 100px; */
     margin: 0 auto;
@@ -99,20 +104,33 @@ width: 90%;
     font-size: 37px;
     }
     .post-content{
-    font-size: 18px
+    font-size: 18px;
+    width: 100%;
+    }
+    .main-content{
+         width: 90%;
+         max-width: 760px;
     }
 }
 @media only screen and (max-width: 1023px) and (min-width: 768px) {
     .post-header h1{
     font-size: 30px;
+    width: 100%
     }
     .post-content{
-font-size: 17px
+    font-size: 17px;
+    width: 100%;
     }
 }
 @media only screen and (max-width: 767px){
     h1{
         font-size: 25px;
+    }
+    .post-content{
+    width: 100%;
+    }
+    .main-content{
+        width: 100%;
     }
 }
 </style>
@@ -129,7 +147,7 @@ font-size: 17px
     overflow: auto;
     line-height: 1.45;
     max-height: 35em;
-    position: relative;
+    /* position: relative; */
     display: block;
     overflow-x: auto;
     padding: 0.5em;
@@ -144,7 +162,20 @@ font-size: 17px
     color: #333;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width:100%
 }
+@media only screen and (max-width: 1023px) and (min-width: 768px){
+    pre{
+         max-width: 600px;
+     }
+}
+@media only screen and (max-width: 767px){
+     pre{
+         max-width: 360px;
+         min-width: 280px;
+     }
+}
+
 </style>
 
 
