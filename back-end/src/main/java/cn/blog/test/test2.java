@@ -1,13 +1,13 @@
 package cn.blog.test;
 
-import cn.blog.bean.Archive;
-import cn.blog.bean.Blog;
-import cn.blog.bean.Handle;
-import cn.blog.bean.HandleExample;
+import cn.blog.bean.*;
 import cn.blog.dao.BlogMapper;
 import cn.blog.dao.HandleMapper;
 import cn.blog.dao.TokenMapper;
+import cn.blog.dao.UserMapper;
 import cn.blog.service.BlogService;
+import cn.blog.service.EmailService;
+import cn.blog.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.*;
@@ -41,6 +42,9 @@ public class test2 {
 
     @Autowired
     private BlogMapper blogMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
     public void Test2(){
@@ -152,15 +156,27 @@ public class test2 {
         List<String> listYear = blogMapper.queryYears();
         for (String year:listYear){
             List<String> listMonth = blogMapper.queryMonthsByYear(year);
-            List list1=new ArrayList();
+            List list = new ArrayList();
             for (String month:listMonth){
                 Map map1 = new LinkedHashMap();
                 String yearMonth = year+"-"+month;
                 List<Archive> listArchive = blogMapper.queryArchives(yearMonth);
                 map1.put(month,listArchive);
-                list1.add(map1);
+                list.add(map1);
             }
-            map2.put(year,list1);
+            map2.put(year,list);
         }
+    }
+
+    @Autowired
+    EmailService emailService;
+
+    @Autowired
+    RedisTemplate redisTemplate;
+
+    @Test
+    public void test12(){
+        String token = emailService.getEmailToken(new User("luxiaotao","0331"));
+        System.out.println(redisTemplate.opsForValue().get(token));
     }
 }
