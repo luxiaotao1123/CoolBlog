@@ -33,5 +33,5 @@ public interface BlogService {
 
     public List<String> orderByMonth();
 
-    public List<Blog> queryArchives();
+    public Map getArchives();
 }

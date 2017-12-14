@@ -1,5 +1,6 @@
 package cn.blog.service.Impl;
 
+import cn.blog.bean.Archive;
 import cn.blog.bean.Blog;
 import cn.blog.bean.BlogExample;
 import cn.blog.dao.BlogMapper;
@@ -9,6 +10,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,12 +78,27 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<String> orderByMonth() {
-        return blogMapper.queryByMonth();
+        return blogMapper.queryMonths();
     }
 
     @Override
-    public List<Blog> queryArchives() {
-        return blogMapper.selectArchives();
+    public Map getArchives() {
+        Map map2 = new LinkedHashMap();
+        List<String> listYear = blogMapper.queryYears();
+        for (String year:listYear){
+            List<String> listMonth = blogMapper.queryMonthsByYear(year);
+            List list1=new ArrayList();
+            for (String month:listMonth){
+                Map map1 = new LinkedHashMap();
+                String yearMonth = year+"-"+month;
+                List<Archive> listArchive = blogMapper.queryArchives(yearMonth);
+                map1.put(month,listArchive);
+                list1.add(map1);
+            }
+            map2.put(year,list1);
+        }
+        return map2;
     }
+
 
 }

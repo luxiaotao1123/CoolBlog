@@ -12,7 +12,7 @@
     <result column="summary" jdbcType="VARCHAR" property="summary" />
     <result column="preview" jdbcType="VARCHAR" property="preview" />
   </resultMap>
-  <resultMap id="archivesResultMap" type="cn.blog.bean.Blog">
+  <resultMap id="archivesResultMap" type="cn.blog.bean.Archive">
     <id column="blogId" jdbcType="INTEGER" property="blogid" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="updateTime" jdbcType="DATE" property="updatetime" />
@@ -313,10 +313,22 @@
     from blog
     WHERE status=1 ORDER BY updateTime DESC
   </select>
-  <select id="queryByMonth" resultType="java.lang.String">
+  <select id="queryYears" resultType="java.lang.String">
+      SELECT DISTINCT LEFT(updateTime,4) FROM blog WHERE STATUS=1 ORDER BY updateTime DESC
+  </select>
+  <select id="queryMonths" resultType="java.lang.String">
     SELECT DISTINCT LEFT(updateTime,7) FROM blog WHERE STATUS=1 ORDER BY updateTime DESC
   </select>
-  <select id="selectArchives" resultMap="archivesResultMap">
-    SELECT blogId,title,updateTime FROM blog WHERE STATUS=1 ORDER BY updateTime DESC
+  <select id="queryMonthsByYear" parameterType="java.lang.String" resultType="java.lang.String">
+      SELECT DISTINCT SUBSTRING(updateTime,6,2)
+      FROM blog
+      WHERE updateTime LIKE concat(#{year},'%') AND STATUS=1
+      ORDER BY updateTime DESC
+  </select>
+  <select id="queryArchives" parameterType="java.lang.String" resultMap="archivesResultMap">
+    SELECT blogId,title
+    FROM blog
+    WHERE STATUS=1 AND updateTime LIKE concat(#{month},'%')
+    ORDER BY updateTime DESC
   </select>
 </mapper>

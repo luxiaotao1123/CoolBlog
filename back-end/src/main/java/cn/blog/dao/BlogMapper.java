@@ -1,5 +1,6 @@
 package cn.blog.dao;
 
+import cn.blog.bean.Archive;
 import cn.blog.bean.Blog;
 import cn.blog.bean.BlogExample;
 import java.util.List;
@@ -44,7 +45,13 @@ public interface BlogMapper {
 
     List<Blog> getAllBlog();
 
-    List<String> queryByMonth();
+    List<String> queryYears();
 
-    List<Blog> selectArchives();
+    List<String> queryMonths();
+
+    List<String> queryMonthsByYear(String year);
+
+    List<Archive> queryArchives(String month);
+
+
 }

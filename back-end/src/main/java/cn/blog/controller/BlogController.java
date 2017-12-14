@@ -58,9 +58,10 @@ public class BlogController {
         return R1.add("Monthss", blogService.orderByMonth());
     }
 
-    @ApiOperation(value = "归档",notes = "")
+
+    @ApiOperation(value = "博客归档",notes = "")
     @GetMapping(value = "archives")
     public R1 getArchives() {
-        return R1.add("archives", blogService.queryArchives());
+        return R1.add("archives",blogService.getArchives());
     }
 }

@@ -1,5 +1,6 @@
 package cn.blog.test;
 
+import cn.blog.bean.Archive;
 import cn.blog.bean.Blog;
 import cn.blog.bean.Handle;
 import cn.blog.bean.HandleExample;
@@ -7,6 +8,7 @@ import cn.blog.dao.BlogMapper;
 import cn.blog.dao.HandleMapper;
 import cn.blog.dao.TokenMapper;
 import cn.blog.service.BlogService;
+import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -21,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.List;
+import java.util.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -122,14 +124,43 @@ public class test2 {
     }
 
     @Test
-    public void test8(){
-        List<String> list = blogService.orderByMonth();
-        List<Blog> blogList = blogService.queryArchives();
-        for (String month:list){
-            System.out.println(month);
+    public void test9(){
+        List<String> months = blogMapper.queryMonths();
+        for (String month:months){
+            List<Archive> archives = blogMapper.queryArchives(month);
+            for (Archive archive:archives){
+                System.out.println(archive.getTitle());
+            }
         }
-        /*for (Blog blog:blogList){
-            System.out.println(blog.getTitle());
-        }*/
+    }
+
+    @Test
+    public void test10(){
+        System.out.println("#############################################################################");
+        Map map = new LinkedHashMap();
+        List<String> listMonth = blogMapper.queryMonths();
+        for (String month : listMonth){
+            List<Archive> listArchive = blogMapper.queryArchives(month);
+            map.put(month,listArchive);
+        }
+        System.out.println("#############################################################################");
+    }
+
+    @Test
+    public void test11(){
+        Map map2 = new LinkedHashMap();
+        List<String> listYear = blogMapper.queryYears();
+        for (String year:listYear){
+            List<String> listMonth = blogMapper.queryMonthsByYear(year);
+            List list1=new ArrayList();
+            for (String month:listMonth){
+                Map map1 = new LinkedHashMap();
+                String yearMonth = year+"-"+month;
+                List<Archive> listArchive = blogMapper.queryArchives(yearMonth);
+                map1.put(month,listArchive);
+                list1.add(map1);
+            }
+            map2.put(year,list1);
+        }
     }
 }
