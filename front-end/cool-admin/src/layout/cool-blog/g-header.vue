@@ -12,7 +12,7 @@
                   <router-link to="/categery"><Icon type="ios-pricetags"></Icon>  分类  </router-link>
               </li>
               <li>
-                  <router-link to="#"><Icon type="android-archive"></Icon>  归档  </router-link>
+                  <router-link to="/archives"><Icon type="android-archive"></Icon>  归档  </router-link>
               </li>
               <li>
                   <router-link to="#"> <Icon type="ios-infinite"></Icon>  关于  </router-link>

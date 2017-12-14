@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-    <section class="router-view-box" :style="{ height: screenHeight }">
-                <router-view class="router-view"></router-view>
+    <section class="router-view-box" :style="{ height: screenHeight, width: screenWidth }">
+            <router-view class="router-view"></router-view>
     </section>
   </div>
 </template>
@@ -10,6 +10,9 @@ export default {
   computed: {
     screenHeight () {
       return window.innerHeight
+    },
+    screenWidth () {
+      return window.innerWidth
     }
   }
 }
@@ -20,5 +23,8 @@ export default {
 background-color: #f5f5f5;
     display: flex;
     justify-content:center;
+}
+.router-view-box{
+  width: 100%;
 }
 </style>

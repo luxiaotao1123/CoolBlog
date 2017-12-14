@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="article-page">
   <article-card :list='list.list'></article-card>
   <div style="margin-top:15px;margin-right:30px;" >
     <Page :current="list.pageNum" :total="list.total"  @on-change ='changePage'></Page>
@@ -68,4 +68,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.article-page{
+      max-width: 1000px;
+    margin: 0px auto;
+}
+</style>
+
 

@@ -46,6 +46,15 @@ const router = new Router({
           meta: {}
         },
         {
+          path: '/archives',
+          component: function (resolve) {
+            require(['../views/archives'], resolve)
+          },
+          name: 'archives',
+          menu: false,
+          meta: {}
+        },
+        {
           path: '/author/:id',
           component: function (resolve) {
             require(['../views/authorInfo'], resolve)
