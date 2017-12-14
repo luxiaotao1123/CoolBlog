@@ -33,4 +33,9 @@ public class MyHtmlController {
     public String toUser(){
         return "user";
     }
+
+    @RequestMapping("register")
+    public String toRegister(){
+        return "register";
+    }
 }

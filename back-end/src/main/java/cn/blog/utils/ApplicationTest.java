@@ -1,4 +1,4 @@
-package cn.blog.test;
+package cn.blog.utils;
 
 import cn.blog.bean.*;
 import cn.blog.dao.BlogMapper;
@@ -29,7 +29,7 @@ import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class test2 {
+public class ApplicationTest {
 
     @Autowired
     private BlogService blogService;
