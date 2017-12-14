@@ -33,7 +33,8 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject("title");
             helper.setText("邮件发送成功");
             String emailToken = getEmailToken(user);
-            helper.setText("<a href='http://localhost:8088/activateMail?emailToken="+emailToken+"'>激活"+"</a>");
+            String url = "<a href='http://localhost:8088/activateMail?emailToken="+emailToken+"'>激活"+"</a></br><h1>如果以上超连接无法访问，请将以下网址复制到浏览器地址栏中</h1><h2>http://localhost:8088/activateMail?emailToken="+emailToken+"</h2>";
+            helper.setText(url,true);
             mailSender.send(mailMessage);
             return true;
         }catch (Exception e){
