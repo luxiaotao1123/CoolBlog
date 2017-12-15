@@ -1,6 +1,6 @@
 <template>
   <div class="global-nav">
-      <h2 class="cool-logo"><img src="static/images/cool.png" width="170px"></h2>
+      <h2 class="cool-logo"><img src="static/images/cool-log.jpg" width="170px"></h2>
       <div class="nav-control" @click="fadeIn"><Icon type="navicon-round"></Icon></div>
       <nav class="cool-nav-content" id='cool-nav' >
           <div class="close_icon"@click="fadeOut" ><Icon type="close-round"></Icon></div>
