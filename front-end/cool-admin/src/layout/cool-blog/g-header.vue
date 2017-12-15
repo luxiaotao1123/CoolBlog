@@ -4,7 +4,7 @@
       <div class="nav-control" @click="fadeIn"><Icon type="navicon-round"></Icon></div>
       <nav class="cool-nav-content" id='cool-nav' >
           <div class="close_icon"@click="fadeOut" ><Icon type="close-round"></Icon></div>
-          <ul class="nav-links" id='nav-l' >
+          <ul class="nav-links" id='nav-l'@click="fadeOut" >
               <li>
                 <router-link to="/home"><Icon type="android-home"></Icon>  首页  </router-link>
                 </li>
@@ -59,7 +59,7 @@ export default {
     -ms-flex: 0 0 20px;
     flex: 0 0 20px;
     right: 10px;
-    top: 6px;
+    top: 15px;
 }
 /* .nav-fade-enter-active{
   transition: all .5s ease;

@@ -50,6 +50,7 @@ export default {
 
 <style scoped>
 .archives{
+   padding-top: 50px;
     display: block;
     max-width: 800px;
     margin: 0 auto;
@@ -57,6 +58,8 @@ export default {
     padding-left: 40px;
     background-color: #ffffff;
   color: #5d686f;
+   margin-bottom: 40px;
+    margin-top: 50px;
 }
 .triangle {
   position: relative;
