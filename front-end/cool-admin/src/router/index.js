@@ -126,6 +126,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // 获取store里面的token
   let token = store.state.token
+  iView.LoadingBar.start()
   // console.log(token)
   // console.log(store.state.userid)
   // 判断要去的路由有没有requiresAuth
@@ -143,7 +144,6 @@ router.beforeEach((to, from, next) => {
     next()// 如果无需token,那么随它去吧
     // window.reload()
   }
-  iView.LoadingBar.start()
 })
 router.afterEach(route => {
   iView.LoadingBar.finish()
