@@ -100,6 +100,9 @@ font-size: 24px;
     display: block;
     line-height: 36px;    
 }
+.article-title .title-box .title-white a{
+    color: rgba(255, 255, 255, 0.87);
+}
 .article-title .title-box .title-date{
         font-size: 14px;
     color: rgba(255, 255, 255, 0.54);
@@ -134,10 +137,11 @@ font-size: 24px;
 }
 @media screen and (max-width: 1024px)  {
     .article-cards{
-        width: 100%;
+        width: 90%;
+        margin: 0px auto
     }
     .article-card{
-        width: 100%;
+        /* width: 100%; */
         overflow: hidden;   
     }
    
@@ -148,9 +152,15 @@ font-size: 24px;
 transition: all 1s ease;
     }
     .article-title{
-            top: 133px;
+            top: 135px;
             transition: all 1s ease;
     }
+.article-card .blog-img a>img{
+    height: 231px;
+}
+.article-title .title-box .title-white a{
+       font-size: 17px;
+}
 }
 </style>
 
