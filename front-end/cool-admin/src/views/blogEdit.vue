@@ -19,10 +19,7 @@
       <Row>
            <Col  :xs="20" :sm="16" :md="12" :lg="8">
               <Select v-model="blogFormItem.label" placeholder="Select your label">
-                        <Option value="js">Javascript</Option>
-                        <Option value="java">Java</Option>
-                        <Option value="Python">Python</Option>
-                        <Option value="Actress">霓虹女星</Option>
+                        <Option v-for="label in labels" :value="label.label" :key="label.labelid"></Option>
               </Select>
        </Col>
       </Row>
@@ -74,7 +71,7 @@ export default {
   },
   data () {
     return {
-      content: '<h2>Write here</h2>',
+      content: '',
       editorOption: {
         // something config
       },
@@ -101,7 +98,8 @@ export default {
         preview: [
             { required: true, message: '别忘记发预览图啊！', trigger: 'blur' }
         ]
-      }
+      },
+      labels: {}
     }
   },
   // if you need to manually control the data synchronization, parent component needs to explicitly emit an event instead of relying on implicit binding
@@ -223,6 +221,20 @@ export default {
       this.blogFormItem.label = ''
       this.blogFormItem.title = ''
       this.content = ''
+    },
+    needlabel () {
+      let that = this
+      service.get('/api/category')
+        .then(function (response) {
+          // console.log(response)
+          if (response.status === 200 && response.data.code === 200) {
+            that.labels = response.data.category
+            console.log(that.labels)
+          }
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   },
   // if you need to get the current editor object, you can find the editor object like this, the $ref object is a ref attribute corresponding to the dom redefined
@@ -245,6 +257,7 @@ export default {
       }
     }
     vm.$refs.myTextEditor.quill.getModule('toolbar').addHandler('image', imgHandler)
+    this.needlabel()
   },
   watch: {
     '$route': 'initForm'

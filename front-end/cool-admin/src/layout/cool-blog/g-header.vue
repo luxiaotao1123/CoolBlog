@@ -103,7 +103,7 @@ padding: 0 20px;
     position: fixed;
     width:250px !important;
     background: #eef1f5;
-    border-left: 1px solid #adadad;
+   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
     z-index: 1;
     opacity: 0;
@@ -143,6 +143,7 @@ padding: 0 20px;
     opacity: 1;
     left: 170px !important;
      border-left: none;
+     box-shadow: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0, 1);
 }
 .cool-nav-content .close_icon{
