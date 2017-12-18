@@ -100,5 +100,10 @@ public class BlogServiceImpl implements BlogService {
         return map2;
     }
 
+    @Override
+    public List<Blog> getBlogsByKeywords(String keywords) {
+        return blogMapper.queryByKeywords(keywords);
+    }
+
 
 }

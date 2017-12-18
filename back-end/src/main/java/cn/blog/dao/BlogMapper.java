@@ -53,5 +53,5 @@ public interface BlogMapper {
 
     List<Archive> queryArchives(String month);
 
-
+    List<Blog> queryByKeywords(String keywords);
 }

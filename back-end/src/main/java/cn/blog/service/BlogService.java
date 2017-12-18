@@ -34,4 +34,6 @@ public interface BlogService {
     public List<String> orderByMonth();
 
     public Map getArchives();
+
+    public List<Blog> getBlogsByKeywords(String keywords);
 }

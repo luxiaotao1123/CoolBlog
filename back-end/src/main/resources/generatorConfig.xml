@@ -39,7 +39,8 @@
         <!--<table tableName="blog" domainObjectName="Blog"></table>
         <table tableName="user" domainObjectName="User"></table>-->
         <!--<table tableName="token" domainObjectName="Token"></table>-->
-        <table tableName="handle" domainObjectName="Handle"></table>
+        <!--<table tableName="handle" domainObjectName="Handle"></table>-->
+        <table tableName="category" domainObjectName="Category"></table>
 
     </context>
 </generatorConfiguration>

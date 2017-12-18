@@ -6,6 +6,7 @@ import cn.blog.dao.HandleMapper;
 import cn.blog.dao.TokenMapper;
 import cn.blog.dao.UserMapper;
 import cn.blog.service.BlogService;
+import cn.blog.service.CategoryService;
 import cn.blog.service.EmailService;
 import cn.blog.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -178,5 +179,18 @@ public class ApplicationTest {
     public void test12(){
         String token = emailService.getEmailToken(new User("luxiaotao","0331"));
         System.out.println(redisTemplate.opsForValue().get(token));
+    }
+
+    @Autowired
+    CategoryService categoryService;
+
+    @Test
+    public void test13(){
+        System.out.println(categoryService.getCategory().size());
+    }
+
+    @Test
+    public void test14(){
+        System.out.println(blogService.getBlogsByKeywords("拉屎").size());
     }
 }
