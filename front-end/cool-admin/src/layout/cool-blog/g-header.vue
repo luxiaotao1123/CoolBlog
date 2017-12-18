@@ -15,7 +15,7 @@
                   <router-link to="/archives"><Icon type="android-archive"></Icon>  归档  </router-link>
               </li>
               <li>
-                  <router-link to="#"> <Icon type="ios-infinite"></Icon>  关于  </router-link>
+                  <router-link to="/login"> <Icon type="ios-infinite"></Icon>  关于  </router-link>
               </li>
           </ul>
       </nav>
