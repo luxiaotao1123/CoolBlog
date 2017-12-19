@@ -59,14 +59,16 @@ public class StreamController {
         logger.info(previewName+"文件已上传");
         String previewSuffix  = previewName.substring(previewName.lastIndexOf("."));
         String newPreviewName = datefile+previewSuffix;
-        //String filePath = "C:\\Users\\Administrator\\Desktop\\getFile\\preview\\";        //文件存储到本地的路径
         String filePath = "//picture/preview/";
-        String finalPath = filePath+newPreviewName;
+        String thumPath = "//picture/thumpreview/thum"+newPreviewName;
         File getFile = new File(filePath+newPreviewName);
         if (getFile.getParentFile().exists()){
-            Thumbnails.of(blogpreview.getInputStream()).size(1024,768).toFile(finalPath);
-            //blogpreview.transferTo(getFile);
-            return R1.success(200,"106.15.205.155:8079/preview/"+newPreviewName);
+            Thumbnails.of(blogpreview.getInputStream()).size(1024,768).toFile(thumPath);
+            blogpreview.transferTo(getFile);
+            R1 r1 = new R1();
+            r1.put("preview","106.15.205.155:8079/preview/"+newPreviewName);
+            r1.put("thumpreview","106.15.205.155:8079/thumpreview/thum"+newPreviewName);
+            return r1;
         }
         return R1.error(500,"目标文件夹不存在");
     }

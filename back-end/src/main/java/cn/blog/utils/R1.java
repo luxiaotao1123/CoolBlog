@@ -29,12 +29,20 @@ public class R1 extends HashMap<String,Object>{
         r1.putAll(map);
         return r1;
     }
-    //
+
+    public static R1 ok(){
+        return new R1();
+    }
     //返回一个对象存进map，key为对象名，key自己命名
     public static R1 add(String key,Object value){
         R1 r1 = new R1();
         r1.put(key,value);
         r1.ok(r1);
         return r1;
+    }
+
+    public R1 put(String key,Object value){
+        super.put(key,value);
+        return this;
     }
 }

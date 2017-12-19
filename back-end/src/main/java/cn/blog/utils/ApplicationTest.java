@@ -193,4 +193,12 @@ public class ApplicationTest {
     public void test14(){
         System.out.println(blogService.getBlogsByKeywords("拉屎").size());
     }
+
+    @Test
+    public void test15(){
+        R r = new R();
+        r.put("key1","11");
+        r.put("key2","22");
+        System.out.println(r);
+    }
 }
