@@ -27,7 +27,7 @@
                        <span style="padding-left:20px">Vincent</span>
                    </div>
                    <div class="tags">
-                       <Tag  type="border" checkable color="blue">{{item.label}}</Tag>
+                       <span>{{item.label}}</span>
                    </div>
                </div>
             </div>
@@ -134,6 +134,11 @@ font-size: 24px;
     float: right ;
     padding-top: 20px;
     padding-right: 10px
+}
+.tags span {
+    color: #969696;
+    font-size: 14px;
+    cursor: pointer;
 }
 @media screen and (max-width: 1024px)  {
     .article-cards{
