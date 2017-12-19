@@ -38,7 +38,6 @@ public class BlogController {
     @ApiImplicitParam(name = "label",value = "博客标签",required = true,dataType = "String")
     @PostMapping(value = "label")
     public R1 getLableBlogs(@RequestBody String label){
-
         List<Blog> blogList = blogService.selectBlogsByLabel(label);
         return R1.add("blogbylabel",blogList);
     }
