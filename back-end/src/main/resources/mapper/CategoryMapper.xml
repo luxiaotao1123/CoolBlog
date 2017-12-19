@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.blog.bean.Category">
     <id column="labelId" jdbcType="INTEGER" property="labelid" />
     <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="blogCount" jdbcType="INTEGER" property="blogcount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    labelId, label
+    labelId, label, blogCount
   </sql>
   <select id="selectByExample" parameterType="cn.blog.bean.CategoryExample" resultMap="BaseResultMap">
     select
