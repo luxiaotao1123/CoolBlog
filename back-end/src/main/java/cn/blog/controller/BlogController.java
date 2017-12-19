@@ -34,18 +34,10 @@ public class BlogController {
         return R1.add("blog",pageInfo);
     }
 
-    /*@ApiOperation(value = "拿到所有博客（分类）",notes = "在blog/{标签}后面在分类路由")
-    @ApiImplicitParam(name = "label",value = "博客标签",required = true,dataType = "String")
-    @GetMapping(value = "blogs/{label}")
-    public R1 getLableBlogs(@PathVariable("label")String label){
-        List<Blog> blogList = blogService.selectBlogsByLabel(label);
-        return R1.add("blogbylabel",blogList);
-    }*/
-
     @ApiOperation(value = "拿到所有博客（分类）",notes = "")
     @ApiImplicitParam(name = "label",value = "博客标签",required = true,dataType = "String")
     @PostMapping(value = "label")
-    public R1 getLableBlogs(@RequestParam String label){
+    public R1 getLableBlogs(@RequestBody String label){
         List<Blog> blogList = blogService.selectBlogsByLabel(label);
         return R1.add("blogbylabel",blogList);
     }
