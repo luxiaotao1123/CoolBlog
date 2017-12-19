@@ -9,7 +9,7 @@
                 <router-link to="/home"><Icon type="android-home"></Icon>  首页  </router-link>
                 </li>
               <li>
-                  <router-link to="/categery"><Icon type="ios-pricetags"></Icon>  分类  </router-link>
+                  <router-link to="/category"><Icon type="ios-pricetags"></Icon>  分类  </router-link>
               </li>
               <li>
                   <router-link to="/archives"><Icon type="android-archive"></Icon>  归档  </router-link>
@@ -82,6 +82,7 @@ transition: all 1s ease;
 }
 .nav-links li{
 padding: 0 20px;
+position: relative;
 }
 .nav-links>li>a{
     font-size: 18px;
@@ -115,6 +116,7 @@ padding: 0 20px;
     display: block;
     padding-top: 10px;
 }
+
 @media (min-width:1024px){
 .cool-logo{
     float: left;

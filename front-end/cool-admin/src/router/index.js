@@ -62,6 +62,15 @@ const router = new Router({
           name: 'author',
           menu: false,
           meta: {}
+        },
+        {
+          path: '/category',
+          component: function (resolve) {
+            require(['../views/category'], resolve)
+          },
+          name: 'category',
+          menu: false,
+          meta: {}
         }
       ]
     },

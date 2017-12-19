@@ -1,14 +1,16 @@
 <template>
   <div class="archives">
-      <h2>归档</h2>
-      <div class="archive" v-for="(item, key) in archives" :key="item.index">
-          <h4>{{key}}</h4>
-          <div v-for="(year, key) of item"  :key="year.key" class="year-box">
-            <ul v-for="(month,key) of year" :key="month.key"  class="archives-month-ul">
-                <h5>{{key}} 月</h5>
-                <li class="post-archive" v-for="day in month":key="day.key"  >
-                    <span class="triangle"></span>
-                    <span><router-link :to="{ name: 'blog', params: { id: day.blogid }}"> {{day.title}}</router-link></span>
+    <h2>归档</h2>
+    <div class="archive" v-for="(item, key) in archives" :key="item.index">
+      <h4>{{key}}</h4>
+      <div v-for="(year, key) of item"  
+           :key="year.key" class="year-box">
+        <ul v-for="(month,key) of year" :key="month.key"  class="archives-month-ul">
+          <h5>{{key}} 月</h5>
+          <li class="post-archive" v-for="day in month" 
+              :key="day.key">
+            <span class="triangle"> </span>
+                    <span><router-link :to="{ name: 'blog', params: { id: day.blogid }}"> {{ day.title }}</router-link></span>
                 </li>
             </ul>
         

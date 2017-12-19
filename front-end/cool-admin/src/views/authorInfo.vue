@@ -20,7 +20,7 @@
         <div style="text-align:center" v-if="id == 4" >
             <img src="https://sfault-avatar.b0.upaiyun.com/284/938/2849383166-59fbc62406de4_huge256" class="about-sel">
             <h3>Vincent</h3>
-            <p>大叔一枝花</p>
+            <p>Talk is cheap, show me the code</p>
             <div class="info-social">
                 <ul class="social-ul">
                     <li>

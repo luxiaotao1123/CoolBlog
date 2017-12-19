@@ -102,6 +102,11 @@ font-size: 24px;
 }
 .article-title .title-box .title-white a{
     color: rgba(255, 255, 255, 0.87);
+    text-overflow:ellipsis;
+ overflow: hidden;
+ white-space: nowrap;
+display: block;
+
 }
 .article-title .title-box .title-date{
         font-size: 14px;
@@ -115,6 +120,12 @@ font-size: 24px;
     color: rgba(0, 0, 0, 0.87);
     background-color: rgb(255, 255, 255);
     border-bottom: 1px solid #eef2f8
+}
+.article-abstract div{
+max-height: 45px;
+text-overflow:ellipsis;
+ overflow: hidden;
+ white-space: nowrap;
 }
 .article-info{
      background-color: rgb(255, 255, 255);
