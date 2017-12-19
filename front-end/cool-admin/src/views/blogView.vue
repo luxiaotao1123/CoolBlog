@@ -1,10 +1,16 @@
 <template>
     <div class="post-header">
+        <br>
+        <br>
         <h1>{{blogInfo.title}}</h1>
         <div class="post-meta">
             <time>{{blogInfo.updatetime}}</time>
         </div>
         <div class="post-content" id='post-content'>
+            <div class="image-view">
+                <img :src="blogInfo.preview" alt="">
+                
+            </div>
             <div class='main-content' v-html="blogInfo.content"></div>
         </div>
     </div>
@@ -28,9 +34,10 @@ export default {
       let that = this
       service.get('/api/blog/' + id)
       .then(function (responce) {
-        console.log(responce)
+        // console.log(responce)
         if (responce.status === 200 || responce.data.code === 200) {
           that.blogInfo = responce.data.getBlog
+          console.log(that.blogInfo)
         } else {
           that.$Message.error('获取失败! ')
         }
@@ -63,6 +70,11 @@ export default {
     margin-bottom: 20px;
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     width: 100%;
+}
+.image-view img{
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 20px
 }
 .post-meta{
 line-height: 1.5em;
