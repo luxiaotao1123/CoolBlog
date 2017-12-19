@@ -3,6 +3,7 @@ package cn.blog.controller;
 import cn.blog.utils.R1;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import net.coobird.thumbnailator.Thumbnails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,9 +61,11 @@ public class StreamController {
         String newPreviewName = datefile+previewSuffix;
         //String filePath = "C:\\Users\\Administrator\\Desktop\\getFile\\preview\\";        //文件存储到本地的路径
         String filePath = "//picture/preview/";
+        String finalPath = filePath+newPreviewName;
         File getFile = new File(filePath+newPreviewName);
         if (getFile.getParentFile().exists()){
-            blogpreview.transferTo(getFile);
+            Thumbnails.of(blogpreview.getInputStream()).size(1024,768).toFile(finalPath);
+            //blogpreview.transferTo(getFile);
             return R1.success(200,"106.15.205.155:8079/preview/"+newPreviewName);
         }
         return R1.error(500,"目标文件夹不存在");
