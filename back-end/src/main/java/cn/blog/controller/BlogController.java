@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,10 +34,18 @@ public class BlogController {
         return R1.add("blog",pageInfo);
     }
 
-    @ApiOperation(value = "拿到所有博客（分类）",notes = "在blog/{标签}后面在分类路由")
+    /*@ApiOperation(value = "拿到所有博客（分类）",notes = "在blog/{标签}后面在分类路由")
     @ApiImplicitParam(name = "label",value = "博客标签",required = true,dataType = "String")
     @GetMapping(value = "blogs/{label}")
     public R1 getLableBlogs(@PathVariable("label")String label){
+        List<Blog> blogList = blogService.selectBlogsByLabel(label);
+        return R1.add("blogbylabel",blogList);
+    }*/
+
+    @ApiOperation(value = "拿到所有博客（分类）",notes = "")
+    @ApiImplicitParam(name = "label",value = "博客标签",required = true,dataType = "String")
+    @PostMapping(value = "label")
+    public R1 getLableBlogs(@RequestParam String label){
         List<Blog> blogList = blogService.selectBlogsByLabel(label);
         return R1.add("blogbylabel",blogList);
     }
