@@ -19,7 +19,7 @@
       <Row>
            <Col  :xs="20" :sm="16" :md="12" :lg="8">
               <Select v-model="blogFormItem.label" placeholder="Select your label">
-                        <Option v-for="label in labels" :value="label.label" :key="label.labelid"></Option>
+                        <Option v-for="label in labels" :value="label.label" :key="label.labelid"></Option>z
               </Select>
        </Col>
       </Row>
@@ -80,7 +80,8 @@ export default {
         label: '',
         content: '',
         summary: '',
-        preview: ''
+        preview: '',
+        thumpreview: ''
       },
       ruleValidate: {
         title: [
@@ -125,8 +126,6 @@ export default {
         console.log(this.blogFormItem)
         let that = this
         let item = this.blogFormItem
-        // let data = 'title=' + item.title + '&label=' + item.label + '&content=' + item.content
-        // let x = QS.stringify(item)
         let y = JSON.stringify(item)
         // console.log(x + data)
         console.log(y)
@@ -141,7 +140,7 @@ export default {
             console.log(response)
             if (response.status === 200 && response.data.code === 201) {
               that.$Message.success('提交成功')
-              that.$forceUpdate()
+              // that.$forceUpdate()
               that.$router.replace({ path: 'bloglist' })
             } else {
               that.$Message.error('提交失败了! ')
@@ -205,12 +204,15 @@ export default {
       })
       .then(function (response) {
         if (response.status === 200) {
-          // console.log(response.data.msg)
+          console.log(response.data)
           // that.addRange = that.$refs.myQuillEditor.getSelection()
-          let value = response.data.msg
+          let value = response.data.preview
+          let value2 = response.data.thumpreview
           value = value.indexOf('http') !== -1 ? value : 'http://' + value
+          value2 = value2.indexOf('http') !== -1 ? value2 : 'http://' + value2
           console.log(value)
           that.blogFormItem.preview = value
+          that.blogFormItem.thumpreview = value2
         }
       })
       .catch(function (error) {

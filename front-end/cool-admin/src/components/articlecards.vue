@@ -4,7 +4,7 @@
             <div class="card-box">
                <div class="blog-img">
                    <router-link :to="{ name: 'blog', params: { id: item.blogid }}">
-                   <img :src='item.preview' > 
+                   <img :src='item.thumpreview' > 
                    </router-link>
                </div>
                <div class="article-title">
