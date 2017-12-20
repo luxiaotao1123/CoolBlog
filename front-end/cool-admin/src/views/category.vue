@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="category-content">
-    <Row>
+    <Row type="flex" justify="center"  align="middle" class="code-row-bg">
          <Col :xs="24" :sm="24" :md="12" :lg="8" v-for="(label, index) in tags" :key="label.index">
           <div class="tag-card">
              <a href="#" class="card-header">
@@ -27,13 +27,13 @@
                         <td class="card-check" @click="chackIt(index,label.label)">查看</td>
                         <td class="card-hot">
                         <Icon type="flame"></Icon>
-                        <span>7</span>
+                        <span>{{label.blogcount}}</span>
                         </td>
                  </tr>
                  </table>
              </div>
              <div class="tag-titles">
-                 <p>dfdfdfdfdf</p>
+               
              </div>
           </div>
          </Col>
@@ -59,7 +59,7 @@ export default {
           // console.log(response)
           if (response.status === 200 && response.data.code === 200) {
             that.tags = response.data.category
-            console.log(that.tags)
+            // console.log(that.tags)
           }
         })
         .catch(function (error) {
@@ -67,12 +67,12 @@ export default {
         })
     },
     chackIt (i, label) {
-      console.log(i)
+    //   console.log(i)
       let that = this
       let title = document.getElementsByClassName('tag-titles')
-      console.log(title[i])
+    //   console.log(title[i])
       let Label = JSON.stringify(label)
-      console.log(Label)
+    //   console.log(Label)
       title[i].style.color = 'red'
       service({
         method: 'post',
@@ -82,17 +82,17 @@ export default {
         contentType: 'application/json'
       })
       .then(function (response) {
-        console.log(response)
+        // console.log(response)
         if (response.status === 200 && response.data.code === 200) {
           that.tagTitle = response.data.blogbylabel
-          console.log(that.tagTitle)
+        //   console.log(that.tagTitle)
           let tagTitle = that.tagTitle
           let tagli = ''
           for (let index = 0; index < tagTitle.length; index++) {
             const tag = tagTitle[index]
-            tagli += '<li>' + tag.title + '</li>'
+            tagli += '<a ' + 'href=' + '"#/blog/' + tag.blogid + '"' + 'class="tags-title-li"' + '>' + '<li  style="list-style:none;color:#5d686f;">' + tag.title + '</li>' + '</a>'
           }
-          console.log(tagli)
+        //   console.log(tagli)
           title[i].innerHTML = tagli
         }
       })
@@ -202,5 +202,26 @@ export default {
 .card-check{
     width: 90%;
     cursor: pointer;
+}
+.category-content .tags-title-li{
+ margin-left: 10px;
+    color: #5d686f;
+}
+.category-content .tag-card .tag-titles{
+   padding-bottom: 10px
+}
+.category-content .tag-card .tag-titles a{
+   color: #5d686f !important;
+}
+.category-content .tag-card .tag-titles li{
+    list-style: none;
+}
+</style>
+<style>
+ul li{
+    list-style: none;
+};
+.tags-title-li{
+   color: #5d686f;
 }
 </style>
