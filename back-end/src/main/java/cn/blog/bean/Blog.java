@@ -21,6 +21,8 @@ public class Blog {
 
     private String preview;
 
+    private String thumpreview;
+
     public Blog(Integer blogid, String title, Date updatetime) {
         this.blogid = blogid;
         this.title = title;
@@ -36,6 +38,18 @@ public class Blog {
         this.content = content;
         this.updatetime = updatetime;
         this.userid = userid;
+    }
+
+    public Blog(String title, String label, String content, Date updatetime, Integer userid, Integer status, String summary, String preview, String thumpreview) {
+        this.title = title;
+        this.label = label;
+        this.content = content;
+        this.updatetime = updatetime;
+        this.userid = userid;
+        this.status = status;
+        this.summary = summary;
+        this.preview = preview;
+        this.thumpreview = thumpreview;
     }
 
     public Blog(String title, String label, String content, Date updatetime, Integer userid, String summary, String preview) {
@@ -62,6 +76,14 @@ public class Blog {
         this.label = label;
         this.content = content;
         this.updatetime = updatetime;
+    }
+
+    public String getThumpreview() {
+        return thumpreview;
+    }
+
+    public void setThumpreview(String thumpreview) {
+        this.thumpreview = thumpreview;
     }
 
     public String getSummary() {
