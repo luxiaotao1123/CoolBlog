@@ -61,10 +61,12 @@ public class StreamController {
         String newPreviewName = datefile+previewSuffix;
         String filePath = "//picture/preview/";
         String thumPath = "//picture/thumpreview/thum"+newPreviewName;
+        String homePagePath = filePath+newPreviewName;
         File getFile = new File(filePath+newPreviewName);
         if (getFile.getParentFile().exists()){
-            Thumbnails.of(blogpreview.getInputStream()).size(1024,768).toFile(thumPath);
-            blogpreview.transferTo(getFile);
+            Thumbnails.of(blogpreview.getInputStream()).size(960,326).toFile(thumPath);     //首页
+            Thumbnails.of(blogpreview.getInputStream()).width(760).toFile(homePagePath);
+            //blogpreview.transferTo(getFile);
             R1 r1 = new R1();
             r1.put("preview","106.15.205.155:8079/preview/"+newPreviewName);
             r1.put("thumpreview","106.15.205.155:8079/thumpreview/thum"+newPreviewName);

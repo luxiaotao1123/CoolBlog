@@ -93,35 +93,6 @@ public class ApplicationTest {
         System.out.println(blogList.get(0).getBlogid());
     }
 
-    @Test
-    public void shiroTest1(){
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
-        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
-        SecurityUtils.setSecurityManager(securityManager);
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
-        try {
-            //将存有用户名和密码的token存进subject中
-            subject.login(token);
-        } catch (UnknownAccountException uae){
-            System.out.println("没有用户名为"+token.getPrincipal()+"的用户");
-        } catch (IncorrectCredentialsException ice){
-            System.out.println("用户名为："+token.getPrincipal()+"的用户密码不正确");
-        } catch (LockedAccountException lae){
-            System.out.println("用户名为："+token.getPrincipal()+"的用户已被冻结");
-        } catch (AuthenticationException e){
-            System.out.println("未知错误！");
-        }
-        System.out.println("success");
-        testRoles();
-        subject.logout();
-    }
-
-    @Test
-    public void shiroTest2(){
-
-    }
-
     @RequiresRoles("admin")
     private void testRoles(){
         Assert.assertEquals(true,true);
