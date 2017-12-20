@@ -52,7 +52,7 @@ export default {
  display: flex;
    justify-content:center;
    flex-direction:column;
-   width: 980px;
+   width: 920px;
    
 }
 .article-card{
