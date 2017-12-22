@@ -26,7 +26,7 @@ public class HomeController {
     @ApiOperation(value = "通过关键字搜索博客")
     @ApiImplicitParam(name = "keywords",value = "关键字",required = true,dataType = "String")
     @RequestMapping(value = "search",method = RequestMethod.POST)
-    public R1 search(@RequestParam String keywords){
+    public R1 search(@RequestBody String keywords){
         return R1.add("blogs",blogService.getBlogsByKeywords(keywords));
     }
 }

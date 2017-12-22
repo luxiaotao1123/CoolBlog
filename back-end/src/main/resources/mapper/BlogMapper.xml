@@ -184,6 +184,6 @@
     ORDER BY updateTime DESC
   </select>
   <select id="queryByKeywords" parameterType="java.lang.String" resultMap="BaseResultMap">
-      SELECT * FROM blog WHERE content LIKE concat('%',#{keywords},'%')
+      SELECT * FROM blog WHERE content LIKE concat('%',#{keywords},'%') OR title LIKE concat('%',#{keywords},'%')
   </select>
 </mapper>

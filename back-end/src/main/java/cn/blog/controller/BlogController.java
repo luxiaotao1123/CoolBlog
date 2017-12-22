@@ -61,4 +61,5 @@ public class BlogController {
     public R1 getArchives() {
         return R1.add("archives",blogService.getArchives());
     }
+
 }

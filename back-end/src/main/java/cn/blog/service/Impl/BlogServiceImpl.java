@@ -102,7 +102,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> getBlogsByKeywords(String keywords) {
-        return blogMapper.queryByKeywords(keywords);
+        String keywordsBytrim = keywords.trim();
+        return blogMapper.queryByKeywords(keywordsBytrim);
     }
 
 
