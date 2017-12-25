@@ -73,6 +73,7 @@ export default {
       max-width: 1000px;
     margin: 0px auto;
 }
+
 </style>
 
 

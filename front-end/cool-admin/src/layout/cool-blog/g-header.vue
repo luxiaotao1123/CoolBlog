@@ -4,28 +4,38 @@
       <div class="nav-control" @click="fadeIn"><Icon type="navicon-round"></Icon></div>
       <nav class="cool-nav-content" id='cool-nav' >
           <div class="close_icon"@click="fadeOut" ><Icon type="close-round"></Icon></div>
-          <ul class="nav-links" id='nav-l'@click="fadeOut" >
-              <li>
+          <ul class="nav-links" id='nav-l' >
+              <li @click="fadeOut">
                 <router-link to="/home"><Icon type="android-home"></Icon>  首页  </router-link>
                 </li>
-              <li>
+              <li @click="fadeOut">
                   <router-link to="/category"><Icon type="ios-pricetags"></Icon>  分类  </router-link>
               </li>
-              <li>
+              <li @click="fadeOut">
                   <router-link to="/archives"><Icon type="android-archive"></Icon>  归档  </router-link>
               </li>
-              <li>
+              <li @click="fadeOut">
                   <router-link to="/login"> <Icon type="ios-infinite"></Icon>  关于  </router-link>
               </li>
+              <li>
+                  <Input  placeholder="Enter something..." style="width: 200px" class="search-box" v-model="search_data"  v-on:click="search()">
+                  <Button slot="append" icon="android-search" v-on:click="search"></Button>
+                  </Input>
+              </li>
           </ul>
+         
       </nav>
+
+      
+  
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      show: true
+      show: true,
+      search_data: ''
     }
   },
   methods: {
@@ -38,6 +48,14 @@ export default {
     fadeOut () {
       let navs = document.getElementById('cool-nav')
       navs.classList.remove('fade-enter')
+    },
+    search () {
+      let data = this.search_data
+      if (data !== null && data.length !== 0) {
+        this.$router.push({path: 'search', query: {q: data}})
+        this.fadeOut()
+      }
+      console.log(data)
     }
   }
 }
@@ -45,6 +63,14 @@ export default {
 <style scoped>
 .global-nav{
     border-bottom: 1px solid #eef2f8;
+        position: fixed;
+    z-index: 1000;
+    top: 0px;
+    background: #fff;
+    width: 100%;
+}
+.search-box .ivu-icon{
+   cursor: pointer;
 }
 .nav-control{
     box-sizing: content-box;
@@ -130,17 +156,17 @@ position: relative;
 .cool-nav-content{
     top: auto;
     right: auto;
-    width: 600px !important;
+    width: 720px !important;
     height: auto;
     position: relative;
     background-color: transparent;
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
+    display: flex; */
+    /* -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
+    -ms-flex-direction: row; */
+    /* flex-direction: row; */
     padding-top: 0;
     opacity: 1;
     left: 170px !important;
@@ -191,25 +217,13 @@ padding: 17px 1.2rem;
     width: 170px
 }
 .cool-nav-content{
-    display: block;
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
+   float: left;
     /* position: fixed; */
     transition: all .33s cubic-bezier(1,0,0,1);
     background-color: #fff;
     top: 0;
-    width: 75%;
+    /* width: 75%; */
     height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    
-    /* padding-top: 55px; */
 }
 .global-nav .nav-links>li>a {
 color: #71777c;

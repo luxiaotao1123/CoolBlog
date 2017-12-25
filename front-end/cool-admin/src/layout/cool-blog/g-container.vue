@@ -23,8 +23,10 @@ export default {
 background-color: #f5f5f5;
     display: flex;
     justify-content:center;
+    margin-top: 70px
 }
 .router-view-box{
   width: 100%;
+  margin-top: 30px
 }
 </style>

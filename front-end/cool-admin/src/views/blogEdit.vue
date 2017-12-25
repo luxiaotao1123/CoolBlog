@@ -19,7 +19,7 @@
       <Row>
            <Col  :xs="20" :sm="16" :md="12" :lg="8">
               <Select v-model="blogFormItem.label" placeholder="Select your label">
-                        <Option v-for="label in labels" :value="label.label" :key="label.labelid"></Option>z
+                        <Option v-for="label in labels" :value="label.label" :key="label.labelid"></Option>
               </Select>
        </Col>
       </Row>
@@ -55,7 +55,6 @@
    <input type="file" multiple accept="image/jpg,image/jpeg,image/png,image/gif" id='secondId' style="display: none"  @change="uploadPre">
    <form  method="post"  enctype="multipart/form-data" id="uploadFormMulti" >
        <input id="uniqueId" type="file" name="" multiple accept="image/jpg,image/jpeg,image/png,image/gif"  @change="uploadImg" style="display: none">
-       <!--style="display: none"-->
   </form>
 
 </div>

@@ -71,6 +71,15 @@ const router = new Router({
           name: 'category',
           menu: false,
           meta: {}
+        },
+        {
+          path: '/search',
+          component: function (resolve) {
+            require(['../views/search'], resolve)
+          },
+          name: 'search',
+          menu: false,
+          meta: {}
         }
       ]
     },
