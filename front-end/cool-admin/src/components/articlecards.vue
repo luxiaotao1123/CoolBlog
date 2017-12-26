@@ -49,11 +49,11 @@ export default {
 </script>
 <style scoped>
 .article-cards{
- display: flex;
-   justify-content:center;
-   flex-direction:column;
-   width: 920px;
-   
+ /* display: flex; */
+ margin: 0 auto;
+    /* justify-content:center; 
+   flex-direction:column; */
+   width: 720px;
 }
 .article-card{
 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -69,6 +69,7 @@ export default {
  justify-content:center;
  margin: 8px;
  margin-bottom: 47.5px
+
 }
 .article-card:hover{
         box-shadow: 0 3px 10px rgba(0,0,0,.156863),0 3px 10px rgba(0,0,0,.227451)!important;
