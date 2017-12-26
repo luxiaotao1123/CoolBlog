@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
     "iview": "^2.7.3",
     "moment": "^2.19.2",
+    "promise-polyfill": "^7.0.0",
     "querystring": "^0.2.0",
     "vue": "^2.5.2",
     "vue-quill-editor": "^2.3.3",

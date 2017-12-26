@@ -7,6 +7,7 @@ import axios from 'axios'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import store from './store'
+import 'babel-polyfill'
 
 Vue.use(router)
 Vue.use(iView)
