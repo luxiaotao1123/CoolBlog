@@ -97,6 +97,7 @@ transition: all 1s ease;
  opacity: 1 !important;
   transform: translateX(0%)!important ;
   z-index: 3 !important;
+  width: 250px !important;
 /* display: block !important; */
 }
 .nav-fade, .nav-fade-leave-to {
@@ -128,7 +129,7 @@ position: relative;
     right: 0px;
     transform: translateX(80px);
     position: fixed;
-    width:250px !important;
+    width:0px;
     background: #eef1f5;
    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
