@@ -52,6 +52,8 @@ export default {
         console.log(response)
         if (response.status === 200 || response.data.code === 200) {
           that.list = response.data.blog
+          document.body.scrollTop = 0
+          document.documentElement.scrollTop = 0
           console.log(that.list.list)
         }
       })
