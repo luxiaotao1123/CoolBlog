@@ -13,4 +13,6 @@ nginx
 mysql 5.1+
 jdk 1.7+
 maven
+Node
+npm
 ```
