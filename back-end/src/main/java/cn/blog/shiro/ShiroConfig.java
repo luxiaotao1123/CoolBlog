@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 import javax.servlet.ServletRequest;
@@ -30,7 +31,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-//@Configuration
+@Configuration
 public class ShiroConfig {
 
     private static Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
