@@ -161,7 +161,7 @@
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    blogId, title, label, updateTime, userId, status, summary, thumpreview
     from blog
     WHERE status=1 ORDER BY updateTime DESC
   </select>
